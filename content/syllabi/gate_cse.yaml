@@ -1,0 +1,237 @@
+track_id: gate_cse
+version: 1
+title: "GATE CSE"
+tagline: "A complete, sequenced computer-science exam syllabus"
+description: "The full CSE preparation map: General Aptitude, Engineering Mathematics, and every core CS subject. The current interactive graph and verified practice cover the OS + DBMS slice; the remaining subjects are present as the staged curriculum outline."
+goal_type: exam
+audience: "GATE CSE aspirants building conceptual depth and exam readiness"
+outcome: "Build a complete, sequenced revision plan across aptitude, mathematics, and core CSE subjects."
+estimated_hours: 470
+scope_note: "The syllabus outline follows the product brief. GATE publishes a fresh official syllabus and paper pattern each cycle; verify exact wording, marks, and dates against the current official brochure before planning an attempt. EdGen is independent and is not affiliated with GATE or the IITs."
+exam_structure:
+  duration: "3 hours"
+  total_marks: 100
+  sections:
+    - {id: general_aptitude, title: "General Aptitude", marks: 15}
+    - {id: engineering_mathematics, title: "Engineering Mathematics", marks: 13}
+    - {id: core_cs, title: "Core Computer Science", marks: 72}
+  question_types: ["MCQ", "MSQ", "NAT"]
+  note: "Marking rules and subject weightage can change; confirm in the current official brochure."
+phases:
+  - id: foundations
+    title: "Foundations"
+    summary: "Build the mathematical, analytical, and programming fluency used across the paper."
+    modules:
+      - id: general_aptitude
+        title: "General Aptitude"
+        hours: 24
+        summary: "Verbal, quantitative, analytical, and spatial reasoning for the common aptitude section."
+        topics:
+          - "Verbal aptitude: grammar, sentence completion, and verbal analogies"
+          - "Reading comprehension and interpretation of short passages"
+          - "Quantitative aptitude: ratios, percentages, averages, and mixtures"
+          - "Numerical estimation, logarithms, powers, and elementary algebra"
+          - "Permutations, combinations, probability, and data interpretation"
+          - "Analytical reasoning: arrangements, deductions, and constraints"
+          - "Spatial aptitude: shapes, transformations, and visual patterns"
+        practice:
+          - "Timed mixed sets with accuracy and time-per-question review"
+      - id: engineering_mathematics
+        title: "Engineering Mathematics"
+        hours: 54
+        summary: "Discrete mathematics, linear algebra, calculus, probability, and statistics."
+        topics:
+          - "Propositional and predicate logic, equivalence, and inference"
+          - "Sets, relations, functions, partial orders, and lattices"
+          - "Monoids, groups, and elementary algebraic structures"
+          - "Combinatorics: counting, pigeonhole principle, and inclusion–exclusion"
+          - "Recurrences and generating-function techniques"
+          - "Graph theory: connectivity, paths, trees, matching, and coloring"
+          - "Linear algebra: matrices, determinants, rank, and systems of equations"
+          - "Eigenvalues, eigenvectors, diagonalization, and vector spaces"
+          - "Single-variable calculus: limits, continuity, and differentiability"
+          - "Mean value theorem, extrema, and definite and indefinite integration"
+          - "Probability: conditional probability, Bayes rule, and independence"
+          - "Random variables, expectation, variance, and common distributions"
+          - "Descriptive statistics and elementary hypothesis reasoning"
+        practice:
+          - "Translate word problems into equations, graphs, or probability models"
+  - id: programming_and_computation
+    title: "Programming and Computation"
+    summary: "Move from executable code and data representation to algorithmic reasoning."
+    modules:
+      - id: programming_data_structures
+        title: "Programming and Data Structures"
+        hours: 42
+        summary: "C programming concepts, memory, recursion, and foundational data structures."
+        topics:
+          - "C types, expressions, operators, control flow, and function calls"
+          - "Pointers, arrays, strings, structures, unions, and dynamic allocation"
+          - "Scope, storage classes, parameter passing, and memory layout"
+          - "Recursion, stack frames, and tracing recursive programs"
+          - "Stacks, queues, deques, and linked lists"
+          - "Trees, binary search trees, traversals, and balanced-tree concepts"
+          - "Heaps, priority queues, and hash tables"
+          - "Graphs: representations, traversal state, and adjacency structures"
+          - "Complexity analysis of common data-structure operations"
+        practice:
+          - "Trace code and identify state changes, bounds, and memory behavior"
+      - id: algorithms
+        title: "Algorithms"
+        hours: 46
+        summary: "Correctness, asymptotic analysis, design paradigms, and graph algorithms."
+        topics:
+          - "Asymptotic notation, recurrences, and best/average/worst-case analysis"
+          - "Searching, sorting, order statistics, and comparison lower bounds"
+          - "Divide and conquer: merge sort, quicksort, and recurrence analysis"
+          - "Greedy algorithms, exchange arguments, and optimal substructure"
+          - "Dynamic programming: state design, recurrence, and reconstruction"
+          - "Graph traversal: BFS, DFS, topological ordering, and components"
+          - "Minimum spanning trees: Prim, Kruskal, and cut properties"
+          - "Shortest paths: Dijkstra, Bellman–Ford, and all-pairs formulations"
+          - "Hashing, string matching, and basic amortized analysis"
+          - "Complexity classes, reductions, and recognizing computational limits"
+        practice:
+          - "Choose an algorithm, prove its invariant, and bound its running time"
+      - id: digital_logic
+        title: "Digital Logic"
+        hours: 34
+        summary: "Boolean reasoning, circuit minimization, arithmetic, and sequential logic."
+        topics:
+          - "Number systems, signed representation, and base conversion"
+          - "Fixed-point and floating-point representation and arithmetic"
+          - "Boolean algebra, canonical forms, and logic minimization"
+          - "Karnaugh maps and combinational circuit minimization"
+          - "Combinational blocks: adders, comparators, encoders, and decoders"
+          - "Multiplexers, demultiplexers, and programmable logic"
+          - "Latches, flip-flops, registers, and counters"
+          - "Sequential circuit analysis and finite-state machine design"
+          - "Timing, propagation delay, and setup/hold concepts"
+        practice:
+          - "Reduce a Boolean specification and derive its circuit implementation"
+      - id: computer_organization
+        title: "Computer Organization and Architecture"
+        hours: 42
+        summary: "Instruction execution, datapaths, pipelining, memory hierarchy, and I/O."
+        topics:
+          - "Instruction formats, instruction sets, and addressing modes"
+          - "Arithmetic logic units, registers, datapaths, and control signals"
+          - "Hardwired and microprogrammed control concepts"
+          - "Instruction execution, interrupts, traps, and privilege transitions"
+          - "Pipelining, throughput, speedup, and structural/data/control hazards"
+          - "Branch handling, forwarding, stalls, and pipeline performance"
+          - "Memory hierarchy, locality, and cache mapping and replacement"
+          - "Main memory, virtual memory interface, and secondary storage"
+          - "I/O organization, programmed I/O, interrupts, and DMA"
+          - "Performance equations and quantitative design trade-offs"
+        practice:
+          - "Compute CPI, cache behavior, pipeline timing, and memory access cost"
+  - id: systems
+    title: "Operating Systems and Data"
+    summary: "Understand how programs run, communicate, store data, and preserve consistency."
+    modules:
+      - id: operating_systems
+        title: "Operating Systems"
+        hours: 44
+        summary: "Processes, concurrency, scheduling, memory, files, storage, and protection."
+        graph_subject: os
+        topics:
+          - "Processes, threads, process states, PCBs, and context switching"
+          - "CPU scheduling criteria and FCFS, SJF/SRTF, priority, and round robin"
+          - "Synchronization, critical sections, atomicity, and race conditions"
+          - "Semaphores, monitors, and classical synchronization problems"
+          - "Deadlock conditions, prevention, avoidance, detection, and recovery"
+          - "Address spaces, allocation, paging, segmentation, and page replacement"
+          - "Virtual memory, demand paging, working sets, and thrashing"
+          - "File systems, directories, allocation, free-space, and protection"
+          - "I/O systems, disk scheduling, buffering, caching, and RAID concepts"
+          - "Protection, access control, and operating-system security foundations"
+        practice:
+          - "Scheduling, page replacement, disk scheduling, and synchronization traces"
+      - id: databases
+        title: "Database Management Systems"
+        hours: 42
+        summary: "Data models, relational theory, SQL, normalization, indexing, and transactions."
+        graph_subject: dbms
+        topics:
+          - "ER modeling, cardinality, participation, and relational mapping"
+          - "Relational model, integrity constraints, keys, and relational algebra"
+          - "Tuple/domain calculus and algebraic query equivalences"
+          - "SQL queries, joins, grouping, subqueries, views, and NULL semantics"
+          - "Functional dependencies, attribute closure, keys, and minimal covers"
+          - "1NF, 2NF, 3NF, BCNF, decomposition, and lossless/join-preserving properties"
+          - "File organization, B/B+ trees, hashing, and index selection"
+          - "Transactions, serializability, locking, timestamp ordering, and recovery"
+          - "Concurrency control, deadlocks, logging, checkpoints, and crash recovery"
+        practice:
+          - "FD closure and keys, normalization, query reasoning, and conflict graphs"
+  - id: networks_and_translation
+    title: "Networks and Language Processing"
+    summary: "Connect systems through protocols and translate source programs into machine code."
+    modules:
+      - id: computer_networks
+        title: "Computer Networks"
+        hours: 42
+        summary: "Layering, data link, routing, IP, transport, and application protocols."
+        topics:
+          - "Layered architectures, service models, encapsulation, and performance metrics"
+          - "Data-link framing, error detection, flow control, and ARQ"
+          - "Ethernet, MAC addressing, switching, bridges, and VLAN concepts"
+          - "IPv4 addressing, subnetting, CIDR, fragmentation, and IPv6 foundations"
+          - "ARP, DHCP, ICMP, NAT, and basic network configuration"
+          - "Routing principles, distance-vector, link-state, and inter-domain routing"
+          - "UDP, TCP connection management, reliability, and flow control"
+          - "Congestion control, fairness, retransmission, and throughput"
+          - "DNS, HTTP, SMTP, FTP, and application-level client/server behavior"
+          - "Sockets, network security basics, and protocol traces"
+        practice:
+          - "Subnet, trace a packet, and reason about sequence numbers and congestion"
+      - id: theory_of_computation
+        title: "Theory of Computation"
+        hours: 38
+        summary: "Regular languages, context-free languages, automata, and computability."
+        topics:
+          - "Regular expressions, regular languages, and closure properties"
+          - "DFA/NFA construction, conversion, minimization, and equivalence"
+          - "Pumping lemma and proving a language is not regular"
+          - "Context-free grammars, ambiguity, and normal forms"
+          - "Pushdown automata and the correspondence with context-free languages"
+          - "Closure and decision properties of regular and context-free languages"
+          - "Turing machines, variants, encodings, and universal computation"
+          - "Decidability, reductions, the halting problem, and undecidability"
+          - "Time/space complexity, P, NP, and elementary reductions"
+        practice:
+          - "Construct or minimize an automaton and prove language properties"
+      - id: compiler_design
+        title: "Compiler Design"
+        hours: 36
+        summary: "Lexing, parsing, semantic translation, intermediate code, and optimization."
+        topics:
+          - "Compiler structure, tokens, lexemes, and regular-expression-based lexing"
+          - "Top-down parsing, FIRST/FOLLOW, LL(1), and predictive tables"
+          - "Bottom-up parsing, LR items, SLR, CLR, and LALR tables"
+          - "Syntax-directed translation, attributes, and intermediate representations"
+          - "Type checking, symbol tables, and semantic analysis"
+          - "Activation records, runtime storage, and procedure calls"
+          - "Three-address code, control-flow graphs, and basic blocks"
+          - "Data-flow analysis, reaching definitions, and liveness"
+          - "Common-subexpression elimination, loop optimization, and code generation"
+        practice:
+          - "Build parsing tables and trace code through intermediate representations"
+  - id: exam_readiness
+    title: "Exam Readiness"
+    summary: "Integrate the subject map with deliberate revision and timed practice."
+    modules:
+      - id: revision_and_mock_strategy
+        title: "Revision, PYQ analysis, and mock strategy"
+        hours: 26
+        summary: "Use mixed retrieval practice, timing, and error analysis to consolidate learning."
+        topics:
+          - "Map prerequisites and revisit high-impact weak concepts"
+          - "Classify mistakes: concept, setup, calculation, or time management"
+          - "Practice MCQ, MSQ, and NAT response strategies"
+          - "Build a personal formula and definition review system"
+          - "Run timed mixed-subject sets and full-length mock reviews"
+          - "Use spaced retrieval and a realistic exam-day pacing plan"
+        practice:
+          - "Mock, inspect evidence, update the Twin, and re-plan the next revision cycle"

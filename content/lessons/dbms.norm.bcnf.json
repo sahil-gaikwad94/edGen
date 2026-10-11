@@ -1,0 +1,52 @@
+{
+  "lesson_id": "dbms.norm.bcnf@v1",
+  "node_id": "dbms.norm.bcnf",
+  "core_version": 1,
+  "lang": "en",
+  "depth": "standard",
+  "title": "Boyce–Codd normal form",
+  "review_status": "reviewed",
+  "blocks": [
+    {
+      "id": "b1",
+      "type": "claim",
+      "badge": "SOURCED",
+      "text": "A relation is in BCNF when for every non-trivial FD X → A, X is a superkey. That is the whole definition — one sentence, no exceptions to memorise.",
+      "receipt": {"kind": "source_span", "source_id": "edgen_syllabus_notes", "quote": "it is in BCNF when for every"}
+    },
+    {
+      "id": "b2",
+      "type": "claim",
+      "badge": "SOURCED",
+      "text": "Every BCNF relation is in 3NF, but a 3NF relation need not be in BCNF — 3NF relaxes the superkey requirement when the right-hand side is a prime attribute.",
+      "receipt": {"kind": "source_span", "source_id": "edgen_syllabus_notes", "quote": "Every BCNF relation is in 3NF, but a 3NF\nrelation need not be in BCNF"}
+    },
+    {
+      "id": "b3",
+      "type": "intuition",
+      "badge": "MODEL",
+      "text": "BCNF's slogan: *every determinant is a key*. If some attribute or attribute group determines something without being a superkey, the relation has a second source of truth hiding inside it — updates can disagree."
+    },
+    {
+      "id": "b4",
+      "type": "example",
+      "badge": "VERIFIED",
+      "text": "R(A, B, C) with F = {AB → C, A → B}: keys = {A} (because A → B and AB → C give C). Both FDs have superkey left sides → **BCNF**. Compare with F = {AB → C, C → B}: C is not a superkey, but B is prime → only 3NF.",
+      "receipt": {"kind": "executed", "detail": "Golden cases nf_bcnf and nf_three_vs_bcnf_classic, verified by dbms.fd_closure."}
+    },
+    {
+      "id": "b5",
+      "type": "counterexample",
+      "badge": "SOURCED",
+      "text": "\"All left sides look like keys, so it's at least 3NF\" — the common miss is stopping at 3NF when every violating FD actually has a superkey left side. Check BCNF first, then walk down.",
+      "receipt": {"kind": "source_span", "source_id": "edgen_syllabus_notes", "quote": "A relation is in 2NF when no non-prime attribute depends"}
+    },
+    {
+      "id": "b6",
+      "type": "check",
+      "badge": "VERIFIED",
+      "foundry": "dbms.fd_closure",
+      "prompt": "Given a fresh FD set, name the highest normal form. The decision procedure is deterministic — so is the grading."
+    }
+  ]
+}

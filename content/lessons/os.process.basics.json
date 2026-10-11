@@ -1,0 +1,61 @@
+{
+  "lesson_id": "os.process.basics@v1",
+  "node_id": "os.process.basics",
+  "core_version": 1,
+  "lang": "en",
+  "depth": "standard",
+  "title": "Processes: states, PCB, and context switches",
+  "review_status": "reviewed",
+  "blocks": [
+    {
+      "id": "b1",
+      "type": "claim",
+      "badge": "MODEL",
+      "text": "A **process** is a program in execution plus the state the OS keeps for it: the process control block (PCB) stores registers, program counter, memory tables, and accounting. A **thread** is a unit of scheduling *within* a process; threads of the same process share its address space, while separate processes do not."
+    },
+    {
+      "id": "b2",
+      "type": "intuition",
+      "badge": "MODEL",
+      "text": "The PCB is the process's save file. When the CPU switches away, the OS writes the current register state into the PCB; when it switches back, the state is restored and execution resumes exactly where it stopped — from the process's point of view, nothing happened."
+    },
+    {
+      "id": "b3",
+      "type": "counterexample",
+      "badge": "MODEL",
+      "text": "\"Threads and processes share the same address space rules\" is false: two threads of one process share memory by design, two processes do not (unless explicitly using shared memory). Getting this wrong breaks every synchronisation question that follows."
+    },
+    {
+      "id": "b4",
+      "type": "viz",
+      "template": "state_cycle",
+      "spec": {
+        "caption": "Five-state process model",
+        "states": ["new", "ready", "running", "waiting", "terminated"],
+        "edges": [
+          {"from": "new", "to": "ready", "label": "admit"},
+          {"from": "ready", "to": "running", "label": "dispatch"},
+          {"from": "running", "to": "ready", "label": "preempt"},
+          {"from": "running", "to": "waiting", "label": "I/O wait"},
+          {"from": "waiting", "to": "ready", "label": "I/O done"},
+          {"from": "running", "to": "terminated", "label": "exit"}
+        ]
+      }
+    },
+    {
+      "id": "b5",
+      "type": "lab",
+      "badge": "MODEL",
+      "runtime": "coming",
+      "starter": "// Browser Python lab (Pyodide) lands in W1 weeks 3–4 with the lab runtime.",
+      "text": "placeholder"
+    },
+    {
+      "id": "b6",
+      "type": "check",
+      "badge": "VERIFIED",
+      "prompt": "This concept feeds CPU scheduling — jump straight into verified scheduling practice.",
+      "foundry": "os.cpu_scheduling"
+    }
+  ]
+}

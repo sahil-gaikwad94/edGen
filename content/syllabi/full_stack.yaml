@@ -1,0 +1,248 @@
+track_id: full_stack
+version: 1
+title: "Full Stack Engineering"
+tagline: "From browser fundamentals to secure, observable production systems"
+description: "A role-readiness path for building, testing, shipping, and operating a complete web product. Progresses from web foundations through modern frontend, APIs, data, security, delivery, and a production-minded capstone."
+goal_type: role
+audience: "Aspiring SDE-1 full-stack engineers and product-minded developers"
+estimated_hours: 458
+outcome: "Design, build, test, deploy, and explain a maintainable full-stack web application."
+scope_note: "The curriculum is a role-readiness map, not a hiring guarantee or certification. Tool versions and cloud-provider details are intentionally versioned separately from core concepts."
+phases:
+  - id: web_foundations
+    title: "Web Foundations"
+    summary: "Understand the browser, network, and developer workflow before adding frameworks."
+    modules:
+      - id: internet_http
+        title: "Internet, HTTP, and the browser"
+        hours: 18
+        summary: "Follow a request from URL entry through DNS, transport, HTTP, rendering, and storage."
+        topics:
+          - "URLs, DNS lookup, IP addresses, TCP, TLS, and HTTP request lifecycles"
+          - "HTTP methods, status codes, headers, content types, and caching semantics"
+          - "Cookies, local/session storage, browser security boundaries, and same-origin policy"
+          - "HTML document parsing, DOM, CSSOM, layout, paint, and compositing"
+          - "Client/server responsibilities, static assets, CDNs, and reverse proxies"
+          - "WebSockets, server-sent events, and when real-time transport is warranted"
+        practice: ["Inspect a network trace and explain each hop and response header"]
+      - id: html_css_accessibility
+        title: "HTML, CSS, responsive design, and accessibility"
+        hours: 28
+        summary: "Build semantic, responsive interfaces that work across input methods and assistive technology."
+        topics:
+          - "Semantic HTML, document landmarks, headings, forms, and native controls"
+          - "CSS cascade, specificity, custom properties, layout, grid, and flexbox"
+          - "Responsive design, fluid type, breakpoints, and mobile-first composition"
+          - "Typography, spacing systems, color contrast, and reusable design tokens"
+          - "Keyboard navigation, focus management, ARIA patterns, and screen-reader testing"
+          - "Motion preferences, reduced motion, and accessible feedback states"
+          - "Image formats, responsive assets, and performance-conscious media"
+        practice: ["Audit and remediate a responsive form with a keyboard and screen reader"]
+      - id: git_shell_tooling
+        title: "Git, shell, and engineering workflow"
+        hours: 16
+        summary: "Use version control and local tooling to make work reproducible and reviewable."
+        topics:
+          - "Shell navigation, pipes, environment variables, and process inspection"
+          - "Git commits, branches, rebases, merge conflict resolution, and clean history"
+          - "Package managers, lockfiles, semantic versions, and dependency hygiene"
+          - "Code formatting, linting, editor automation, and project scripts"
+          - "Pull requests, review etiquette, small diffs, and technical documentation"
+        practice: ["Implement a feature on a branch and deliver a review-ready pull request"]
+  - id: programming_and_frontend
+    title: "Programming and Frontend"
+    summary: "Write reliable JavaScript/TypeScript and build accessible, stateful user experiences."
+    modules:
+      - id: javascript_typescript
+        title: "JavaScript and TypeScript"
+        hours: 34
+        summary: "Master the language and runtime behaviors that shape browser and server code."
+        topics:
+          - "Values, coercion, scope, closures, prototypes, and object composition"
+          - "Functions, modules, errors, exceptions, and functional programming patterns"
+          - "Promises, async/await, event loop, tasks, microtasks, and cancellation"
+          - "Arrays, maps, sets, iterators, generators, and immutable updates"
+          - "TypeScript annotations, unions, narrowing, generics, and inference"
+          - "Runtime validation versus compile-time types and safe boundary parsing"
+          - "Testing pure functions, debugging, and reading stack traces"
+          - "Memory leaks, reference retention, and browser runtime constraints"
+        practice: ["Model and test a typed asynchronous data flow with failure cases"]
+      - id: react_ui_architecture
+        title: "React and interface architecture"
+        hours: 34
+        summary: "Compose reusable components and manage state without losing accessibility or performance."
+        topics:
+          - "Component composition, props, state, keys, and rendering lifecycle"
+          - "Hooks, effects, derived state, stale closures, and effect cleanup"
+          - "Controlled forms, validation, loading/error/empty states, and optimistic updates"
+          - "Client routing, layouts, error boundaries, and deep links"
+          - "State ownership, context, server state, and cache invalidation"
+          - "Design systems, component APIs, variants, and visual regression"
+          - "Accessibility in dynamic UI: focus, live regions, and modal patterns"
+          - "Performance profiling, memoization, list virtualization, and code splitting"
+        practice: ["Build an accessible data-heavy interface with explicit async states"]
+      - id: next_rendering
+        title: "Next.js and rendering strategies"
+        hours: 26
+        summary: "Choose rendering and data-fetching strategies that match product and deployment needs."
+        topics:
+          - "Pages/App router mental models, layouts, route parameters, and navigation"
+          - "Static generation, server rendering, revalidation, and client rendering trade-offs"
+          - "Server/client boundaries, hydration, serialization, and mismatch debugging"
+          - "Route handlers, middleware, rewrites, proxies, and origin security"
+          - "Metadata, search engine rendering, canonical URLs, and noindex policy"
+          - "Image/font optimization, bundle analysis, and production builds"
+        practice: ["Ship a route with an intentional rendering strategy and measured bundle cost"]
+  - id: backend_and_data
+    title: "Backend and Data"
+    summary: "Design predictable APIs and data models with transactional and operational behavior."
+    modules:
+      - id: api_backend
+        title: "Backend services and API contracts"
+        hours: 34
+        summary: "Build typed, versioned APIs with clear validation and failure semantics."
+        topics:
+          - "REST resource modeling, HTTP semantics, pagination, filtering, and versioning"
+          - "OpenAPI schemas, request/response validation, and generated clients"
+          - "Authentication context, authorization policy, and least privilege"
+          - "Idempotency, retries, rate limits, and safe mutation design"
+          - "Error taxonomies, structured responses, correlation IDs, and timeouts"
+          - "Background jobs, queues, webhooks, and eventual consistency"
+          - "Node/FastAPI service structure, dependency injection, and configuration"
+          - "WebSocket and streaming API contracts"
+        practice: ["Specify and implement a versioned API with contract tests"]
+      - id: relational_data
+        title: "Relational data and PostgreSQL"
+        hours: 34
+        summary: "Model data, query efficiently, and preserve invariants under concurrent access."
+        topics:
+          - "Relational modeling, keys, constraints, normalization, and migrations"
+          - "SQL joins, aggregation, CTEs, window functions, and query composition"
+          - "Indexes, query plans, selectivity, and performance diagnosis"
+          - "Transactions, isolation levels, locks, deadlocks, and retries"
+          - "Connection pools, prepared statements, and safe parameterization"
+          - "Schema evolution, backfills, rollbacks, and zero-downtime migration patterns"
+          - "JSON columns, full-text search, and when relational storage remains preferable"
+        practice: ["Design a schema, inspect EXPLAIN output, and test concurrent invariants"]
+      - id: nosql_cache_search
+        title: "NoSQL, caching, and search"
+        hours: 22
+        summary: "Select complementary data systems based on access patterns and consistency needs."
+        topics:
+          - "Key-value, document, wide-column, and graph data models"
+          - "Redis caching, TTLs, invalidation, stampedes, and cache-aside patterns"
+          - "Consistency, partitioning, replication, and availability trade-offs"
+          - "Search indexing, analyzers, ranking, and synchronization with source records"
+          - "Object storage, file uploads, signed URLs, and lifecycle policies"
+        practice: ["Choose a storage model from workload constraints and document its trade-offs"]
+  - id: security_and_quality
+    title: "Security and Quality"
+    summary: "Treat secure defaults and automated tests as part of the product, not final polish."
+    modules:
+      - id: application_security
+        title: "Application security and identity"
+        hours: 30
+        summary: "Threat-model common web risks and implement practical defensive controls."
+        topics:
+          - "Threat modeling, trust boundaries, attack surfaces, and security requirements"
+          - "SQL injection, XSS, CSRF, SSRF, request smuggling, and output encoding"
+          - "Sessions, cookie flags, OAuth/OIDC flows, token lifetimes, and logout"
+          - "Authorization checks, IDOR, role/scope modeling, and tenant isolation"
+          - "CORS, CSP, secure headers, origin validation, and browser security"
+          - "Secrets management, password storage, key rotation, and audit events"
+          - "Dependency scanning, vulnerability triage, and responsible disclosure"
+          - "Privacy-by-design, data minimization, retention, export, and deletion"
+        practice: ["Find and fix a seeded vulnerability; explain the regression test"]
+      - id: testing_strategy
+        title: "Testing strategy and automation"
+        hours: 30
+        summary: "Use a layered test strategy to keep behavior fast, trustworthy, and reproducible."
+        topics:
+          - "Unit tests, fixtures, boundaries, determinism, and useful assertions"
+          - "Component tests, accessibility checks, and user-event simulation"
+          - "API integration tests, schema/contract tests, and database isolation"
+          - "End-to-end browser tests, stable selectors, and test data management"
+          - "Property-based tests, fuzzing, mutation testing, and shrinking failures"
+          - "Mocks, fakes, cassettes, and avoiding tests that only test mocks"
+          - "Flaky-test diagnosis, parallelism, coverage quality, and CI feedback time"
+        practice: ["Build a test pyramid for a small product and explain what each layer proves"]
+  - id: delivery_and_operations
+    title: "Delivery and Operations"
+    summary: "Ship safely, observe real behavior, and scale only after measuring constraints."
+    modules:
+      - id: containers_cloud_cicd
+        title: "Containers, cloud, and CI/CD"
+        hours: 30
+        summary: "Package services and deliver repeatable changes across environments."
+        topics:
+          - "Linux process model, networking, filesystems, and resource limits"
+          - "Docker images, layers, multi-stage builds, and non-root containers"
+          - "Compose, local service dependencies, and environment parity"
+          - "CI pipelines, build artifacts, deployment gates, and release strategies"
+          - "Cloud compute, managed databases, object storage, and IAM foundations"
+          - "Infrastructure as code, configuration drift, and environment isolation"
+          - "Blue-green/canary deployment, rollback, and database compatibility"
+        practice: ["Containerize a service and automate its test-to-deploy path"]
+      - id: observability_reliability
+        title: "Observability and reliability"
+        hours: 26
+        summary: "Make production behavior diagnosable and define service health in user terms."
+        topics:
+          - "Structured logs, metrics, traces, context propagation, and correlation IDs"
+          - "Dashboards, alerts, noise reduction, and actionable thresholds"
+          - "SLIs, SLOs, error budgets, incident response, and blameless postmortems"
+          - "Latency percentiles, throughput, saturation, and load-test interpretation"
+          - "Retries, circuit breakers, bulkheads, graceful degradation, and queues"
+          - "Capacity planning, bottleneck analysis, and cost-aware scaling"
+        practice: ["Diagnose a seeded latency incident from traces, metrics, and logs"]
+      - id: system_design
+        title: "System design and performance"
+        hours: 28
+        summary: "Reason about product architecture with explicit requirements and trade-offs."
+        topics:
+          - "Functional/non-functional requirements, estimation, and architecture diagrams"
+          - "Monoliths, service boundaries, modularity, and migration strategy"
+          - "Caching, queues, databases, replication, partitioning, and consistency"
+          - "API gateways, CDNs, load balancers, and edge delivery"
+          - "Concurrency, backpressure, idempotent workflows, and failure domains"
+          - "Frontend performance: Core Web Vitals, hydration, and resource budgets"
+          - "Security, privacy, reliability, and cost as design constraints"
+        practice: ["Design a product system and defend its first bottleneck and scaling path"]
+      - id: collaboration_product_engineering
+        title: "Product engineering and collaboration"
+        hours: 18
+        summary: "Translate user needs into small, maintainable, reviewable software increments."
+        topics:
+          - "Problem framing, user journeys, acceptance criteria, and scope control"
+          - "Readable code, naming, modularity, documentation, and technical debt"
+          - "Code review, feedback, collaboration, and cross-functional communication"
+          - "Accessibility, analytics consent, privacy, and ethical product decisions"
+          - "Incident communication, release notes, and operational ownership"
+        practice: ["Turn a user problem into a scoped implementation and explain the trade-offs"]
+  - id: capstone
+    title: "Capstone and Career Readiness"
+    summary: "Demonstrate the complete build-measure-operate loop in a portfolio project."
+    modules:
+      - id: production_capstone
+        title: "Production-minded full-stack capstone"
+        hours: 34
+        summary: "Deliver a documented application with an API, data model, tests, deployment, and observability."
+        topics:
+          - "Write a product brief, system diagram, threat model, and delivery plan"
+          - "Build a responsive accessible UI and versioned backend API"
+          - "Design migrations, database invariants, and safe seed data"
+          - "Add auth, authorization, input validation, and security headers"
+          - "Automate unit, contract, and end-to-end tests in CI"
+          - "Deploy with dashboards, alerts, a rollback plan, and a runbook"
+          - "Publish a portfolio README with architecture and measured trade-offs"
+        practice: ["Present the system, demonstrate a failure mode, and defend its design decisions"]
+      - id: interview_preparation
+        title: "Interview and portfolio preparation"
+        hours: 16
+        summary: "Communicate engineering choices and demonstrate core problem-solving fluency."
+        topics:
+          - "Data structures, algorithms, and coding-interview communication"
+          - "Behavioral examples, ownership stories, and feedback reflection"
+          - "Project walkthroughs, architecture questions, and trade-off explanations"
+          - "Resume/portfolio evidence, concise documentation, and honest skill claims"
+        practice: ["Run a project demo and structured technical interview rehearsal"]

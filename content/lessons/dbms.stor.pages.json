@@ -1,0 +1,30 @@
+{
+  "lesson_id": "dbms.stor.pages@v1",
+  "node_id": "dbms.stor.pages",
+  "core_version": 1,
+  "lang": "en",
+  "depth": "standard",
+  "title": "Pages, slotted pages, and record layout",
+  "review_status": "reviewed",
+  "blocks": [
+    {
+      "id": "b1",
+      "type": "claim",
+      "badge": "MODEL",
+      "text": "Storage managers read and write **pages** (typically 4–16 KB) — the unit of I/O between disk and memory. A **slotted page** keeps a header with a directory of record offsets, so records can be inserted, deleted, and grow in place without rewriting the page."
+    },
+    {
+      "id": "b2",
+      "type": "intuition",
+      "badge": "MODEL",
+      "text": "Everything faster in a DBMS is a story about avoiding random I/O: indexes collapse searches into a few page reads, buffer managers bet on which page will be needed next, and slotted pages make updates cheap enough to stay inside one page most of the time."
+    },
+    {
+      "id": "b3",
+      "type": "check",
+      "badge": "VERIFIED",
+      "prompt": "Buffer management reuses the same victim-selection logic as virtual memory — practice it through page replacement.",
+      "foundry": "os.page_replacement"
+    }
+  ]
+}

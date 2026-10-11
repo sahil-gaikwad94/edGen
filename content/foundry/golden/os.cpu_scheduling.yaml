@@ -1,0 +1,31 @@
+# Hand-verified golden cases for os.cpu_scheduling (reviewed: W0, edGen team).
+generator: os.cpu_scheduling
+cases:
+  - name: fcfs_basic
+    params:
+      mode: fcfs
+      metric: waiting
+      processes:
+        - {pid: P0, at: 0, bt: 5, index: 0}
+        - {pid: P1, at: 1, bt: 3, index: 1}
+        - {pid: P2, at: 2, bt: 8, index: 2}
+    expected: "3.33"   # ct 5,8,16 → waiting 0,4,6 → 10/3
+  - name: rr_q2_all_arrive_zero
+    params:
+      mode: rr
+      quantum: 2
+      metric: waiting
+      processes:
+        - {pid: P0, at: 0, bt: 5, index: 0}
+        - {pid: P1, at: 0, bt: 3, index: 1}
+        - {pid: P2, at: 0, bt: 4, index: 2}
+    expected: "6.67"   # ct 12,9,11 → waiting 7,6,7 → 20/3
+  - name: srtf_preempt_at_arrival
+    params:
+      mode: srtf
+      metric: waiting
+      processes:
+        - {pid: P0, at: 0, bt: 8, index: 0}
+        - {pid: P1, at: 2, bt: 4, index: 1}
+        - {pid: P2, at: 4, bt: 1, index: 2}
+    expected: "2.00"   # ct 13,7,5 → waiting 5,1,0 → 6/3

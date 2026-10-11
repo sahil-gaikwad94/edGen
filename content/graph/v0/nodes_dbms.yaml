@@ -1,0 +1,385 @@
+# EdGen Concept Graph v0 — DBMS (GATE CSE W0 slice)
+# Schema per SystemsDesign §2. Human-authored; reviewed for W0 concierge test.
+graph_version: 0
+subject: dbms
+default_sources:
+  - {id: src_dbms_notes, kind: syllabus_notes, license: CC-BY-SA-4.0}
+nodes:
+  # --- ER model ---
+  - id: dbms.er.entity
+    title: "Entities, attributes, and keys in ER"
+    topic: dbms.er
+    prereqs: []
+    est_minutes: 10
+    difficulty_prior: 0.55
+
+  - id: dbms.er.relationships
+    title: "Relationships and cardinality ratios"
+    topic: dbms.er
+    prereqs: [dbms.er.entity]
+    est_minutes: 10
+    difficulty_prior: 0.50
+    misconceptions:
+      - "A 1:N relationship puts the key on both sides of the relation mapping"
+
+  - id: dbms.er.participation
+    title: "Participation: total vs partial"
+    topic: dbms.er
+    prereqs: [dbms.er.relationships]
+    est_minutes: 8
+    difficulty_prior: 0.48
+
+  - id: dbms.er.weak
+    title: "Weak entities and identifying relationships"
+    topic: dbms.er
+    prereqs: [dbms.er.relationships]
+    est_minutes: 8
+    difficulty_prior: 0.42
+
+  - id: dbms.er.isa
+    title: "Specialization and generalization"
+    topic: dbms.er
+    prereqs: [dbms.er.relationships]
+    est_minutes: 8
+    difficulty_prior: 0.45
+
+  - id: dbms.er.to_rel
+    title: "ER to relational mapping"
+    topic: dbms.er
+    prereqs: [dbms.er.weak, dbms.er.isa]
+    est_minutes: 10
+    difficulty_prior: 0.45
+
+  - id: dbms.er.issues
+    title: "Constraints ER cannot express"
+    topic: dbms.er
+    prereqs: [dbms.er.to_rel]
+    est_minutes: 6
+    difficulty_prior: 0.50
+
+  # --- Relational model ---
+  - id: dbms.rel.basics
+    title: "Tuples, domains, and relation properties"
+    topic: dbms.relational
+    prereqs: [dbms.er.to_rel]
+    est_minutes: 8
+    difficulty_prior: 0.50
+
+  - id: dbms.rel.keys
+    title: "Keys and integrity constraints"
+    topic: dbms.relational
+    prereqs: [dbms.rel.basics]
+    est_minutes: 8
+    difficulty_prior: 0.50
+
+  - id: dbms.rel.algebra
+    title: "Relational algebra operators"
+    topic: dbms.relational
+    prereqs: [dbms.rel.basics]
+    est_minutes: 12
+    difficulty_prior: 0.45
+
+  - id: dbms.rel.joins
+    title: "Join variants: theta, natural, outer, division"
+    topic: dbms.relational
+    prereqs: [dbms.rel.algebra]
+    est_minutes: 12
+    difficulty_prior: 0.40
+
+  - id: dbms.rel.calculus
+    title: "Tuple and domain calculus"
+    topic: dbms.relational
+    prereqs: [dbms.rel.algebra]
+    est_minutes: 10
+    difficulty_prior: 0.42
+
+  - id: dbms.rel.equivalence
+    title: "Equivalences and query reordering"
+    topic: dbms.relational
+    prereqs: [dbms.rel.algebra]
+    est_minutes: 8
+    difficulty_prior: 0.40
+
+  # --- SQL ---
+  - id: dbms.sql.basics
+    title: "SELECT–WHERE fundamentals"
+    topic: dbms.sql
+    prereqs: [dbms.rel.basics]
+    est_minutes: 10
+    difficulty_prior: 0.55
+
+  - id: dbms.sql.joins
+    title: "Multi-table joins and aliases"
+    topic: dbms.sql
+    prereqs: [dbms.sql.basics, dbms.rel.joins]
+    est_minutes: 10
+    difficulty_prior: 0.48
+
+  - id: dbms.sql.group
+    title: "GROUP BY, HAVING, and NULL semantics"
+    topic: dbms.sql
+    prereqs: [dbms.sql.basics]
+    est_minutes: 10
+    difficulty_prior: 0.45
+    misconceptions:
+      - "WHERE can filter aggregate values"
+
+  - id: dbms.sql.subqueries
+    title: "Subqueries and correlated references"
+    topic: dbms.sql
+    prereqs: [dbms.sql.joins]
+    est_minutes: 12
+    difficulty_prior: 0.40
+
+  - id: dbms.sql.aggregates
+    title: "Aggregates and DISTINCT interactions"
+    topic: dbms.sql
+    prereqs: [dbms.sql.group]
+    est_minutes: 8
+    difficulty_prior: 0.45
+
+  - id: dbms.sql.ddl
+    title: "DML vs DDL and cascading changes"
+    topic: dbms.sql
+    prereqs: [dbms.sql.basics]
+    est_minutes: 8
+    difficulty_prior: 0.50
+
+  - id: dbms.sql.views
+    title: "Views and updatable views"
+    topic: dbms.sql
+    prereqs: [dbms.sql.ddl]
+    est_minutes: 8
+    difficulty_prior: 0.45
+
+  # --- Normalization ---
+  - id: dbms.norm.anomalies
+    title: "Insert, update, and delete anomalies"
+    topic: dbms.normalization
+    prereqs: [dbms.rel.keys]
+    est_minutes: 8
+    difficulty_prior: 0.50
+
+  - id: dbms.norm.fd
+    title: "Functional dependencies"
+    topic: dbms.normalization
+    prereqs: [dbms.rel.keys]
+    est_minutes: 10
+    difficulty_prior: 0.48
+    misconceptions:
+      - "AB → C means A → C or B → C"
+
+  - id: dbms.norm.closure
+    title: "Attribute closure and key derivation"
+    topic: dbms.normalization
+    prereqs: [dbms.norm.fd]
+    est_minutes: 12
+    difficulty_prior: 0.42
+    generators: [dbms.fd_closure]
+    misconceptions:
+      - "One pass over the FDs is enough for the closure"
+
+  - id: dbms.norm.candidate_keys
+    title: "Candidate, super, and alternate keys"
+    topic: dbms.normalization
+    prereqs: [dbms.norm.closure]
+    est_minutes: 10
+    difficulty_prior: 0.42
+    generators: [dbms.fd_closure]
+
+  - id: dbms.norm.minimal_cover
+    title: "Minimal cover"
+    topic: dbms.normalization
+    prereqs: [dbms.norm.fd]
+    est_minutes: 10
+    difficulty_prior: 0.38
+
+  - id: dbms.norm.first_nf
+    title: "First normal form"
+    topic: dbms.normalization
+    prereqs: [dbms.norm.anomalies]
+    est_minutes: 6
+    difficulty_prior: 0.55
+    generators: [dbms.fd_closure]
+
+  - id: dbms.norm.second_nf
+    title: "Second normal form and partial dependency"
+    topic: dbms.normalization
+    prereqs: [dbms.norm.first_nf, dbms.norm.candidate_keys]
+    est_minutes: 10
+    difficulty_prior: 0.42
+    generators: [dbms.fd_closure]
+
+  - id: dbms.norm.third_nf
+    title: "Third normal form and transitive dependency"
+    topic: dbms.normalization
+    prereqs: [dbms.norm.second_nf]
+    est_minutes: 10
+    difficulty_prior: 0.40
+    generators: [dbms.fd_closure]
+
+  - id: dbms.norm.bcnf
+    title: "Boyce–Codd normal form"
+    topic: dbms.normalization
+    prereqs: [dbms.norm.third_nf]
+    est_minutes: 12
+    difficulty_prior: 0.38
+    generators: [dbms.fd_closure]
+    misconceptions:
+      - "Every relation in BCNF is automatically in 3NF — direction of the implication"
+
+  - id: dbms.norm.decomposition
+    title: "Lossless join and dependency preservation"
+    topic: dbms.normalization
+    prereqs: [dbms.norm.bcnf]
+    est_minutes: 12
+    difficulty_prior: 0.35
+
+  - id: dbms.norm.ladder
+    title: "Which normal form? A decision procedure"
+    topic: dbms.normalization
+    prereqs: [dbms.norm.bcnf]
+    est_minutes: 10
+    difficulty_prior: 0.40
+    generators: [dbms.fd_closure]
+
+  # --- Transactions ---
+  - id: dbms.txn.acid
+    title: "ACID and transaction basics"
+    topic: dbms.txn
+    prereqs: [dbms.rel.keys]
+    est_minutes: 8
+    difficulty_prior: 0.55
+
+  - id: dbms.txn.schedules
+    title: "Schedules and equivalence"
+    topic: dbms.txn
+    prereqs: [dbms.txn.acid]
+    est_minutes: 10
+    difficulty_prior: 0.45
+
+  - id: dbms.txn.conflict_serializable
+    title: "Conflict serializability and precedence graphs"
+    topic: dbms.txn
+    prereqs: [dbms.txn.schedules]
+    est_minutes: 12
+    difficulty_prior: 0.38
+    generators: [dbms.serializability]
+    misconceptions:
+      - "Any two operations from different transactions on different data items create an edge"
+
+  - id: dbms.txn.view_serializable
+    title: "View serializability"
+    topic: dbms.txn
+    prereqs: [dbms.txn.conflict_serializable]
+    est_minutes: 10
+    difficulty_prior: 0.35
+
+  - id: dbms.txn.recoverability
+    title: "Recoverable and cascading schedules"
+    topic: dbms.txn
+    prereqs: [dbms.txn.schedules]
+    est_minutes: 10
+    difficulty_prior: 0.40
+
+  - id: dbms.txn.commit_order
+    title: "Commit order, dirty reads, and strict schedules"
+    topic: dbms.txn
+    prereqs: [dbms.txn.recoverability]
+    est_minutes: 8
+    difficulty_prior: 0.42
+
+  # --- Concurrency control ---
+  - id: dbms.cc.two_phase
+    title: "Two-phase locking"
+    topic: dbms.cc
+    prereqs: [dbms.txn.conflict_serializable]
+    est_minutes: 12
+    difficulty_prior: 0.40
+    misconceptions:
+      - "2PL guarantees freedom from deadlock"
+
+  - id: dbms.cc.deadlock_mgmt
+    title: "Deadlock handling: timeout, detection, prevention"
+    topic: dbms.cc
+    prereqs: [dbms.cc.two_phase]
+    est_minutes: 8
+    difficulty_prior: 0.45
+
+  - id: dbms.cc.timestamp
+    title: "Timestamp and validation-based ordering"
+    topic: dbms.cc
+    prereqs: [dbms.cc.two_phase]
+    est_minutes: 10
+    difficulty_prior: 0.38
+
+  - id: dbms.cc.multi_version
+    title: "Multi-version concurrency control"
+    topic: dbms.cc
+    prereqs: [dbms.cc.timestamp]
+    est_minutes: 8
+    difficulty_prior: 0.35
+
+  # --- Indexing & storage ---
+  - id: dbms.idx.basics
+    title: "Indexes: dense, sparse, multilevel"
+    topic: dbms.indexing
+    prereqs: [dbms.rel.basics]
+    est_minutes: 8
+    difficulty_prior: 0.50
+
+  - id: dbms.idx.btree
+    title: "B-trees: order, occupancy, splits"
+    topic: dbms.indexing
+    prereqs: [dbms.idx.basics]
+    est_minutes: 12
+    difficulty_prior: 0.40
+
+  - id: dbms.idx.bplus
+    title: "B+ trees: fan-out, height, range scans"
+    topic: dbms.indexing
+    prereqs: [dbms.idx.btree]
+    est_minutes: 12
+    difficulty_prior: 0.38
+
+  - id: dbms.idx.hashing
+    title: "Static and dynamic hashing"
+    topic: dbms.indexing
+    prereqs: [dbms.idx.basics]
+    est_minutes: 10
+    difficulty_prior: 0.42
+
+  - id: dbms.idx.clustering
+    title: "Clustering vs secondary indexes"
+    topic: dbms.indexing
+    prereqs: [dbms.idx.basics]
+    est_minutes: 8
+    difficulty_prior: 0.45
+
+  - id: dbms.stor.pages
+    title: "Pages, slotted pages, and record layout"
+    topic: dbms.storage
+    prereqs: []
+    est_minutes: 8
+    difficulty_prior: 0.50
+
+  - id: dbms.stor.heap
+    title: "Heap and sequential file organization"
+    topic: dbms.storage
+    prereqs: [dbms.stor.pages]
+    est_minutes: 8
+    difficulty_prior: 0.50
+
+  - id: dbms.stor.record
+    title: "Variable-length records"
+    topic: dbms.storage
+    prereqs: [dbms.stor.pages]
+    est_minutes: 8
+    difficulty_prior: 0.45
+
+  - id: dbms.stor.buffers
+    title: "Buffer management: LRU and clock"
+    topic: dbms.storage
+    prereqs: [dbms.stor.heap]
+    est_minutes: 10
+    difficulty_prior: 0.42

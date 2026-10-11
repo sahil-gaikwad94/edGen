@@ -1,0 +1,36 @@
+{
+  "lesson_id": "dbms.er.entity@v1",
+  "node_id": "dbms.er.entity",
+  "core_version": 1,
+  "lang": "en",
+  "depth": "standard",
+  "title": "Entities, attributes, and keys in ER",
+  "review_status": "reviewed",
+  "blocks": [
+    {
+      "id": "b1",
+      "type": "claim",
+      "badge": "MODEL",
+      "text": "An **entity** is a distinguishable real-world object or concept (Student, Flight, Course). An **attribute** is a property of an entity (name, seat_no). A **key attribute** uniquely identifies an entity set (roll_no). Composite attributes have parts; derived attributes are computed (age from dob)."
+    },
+    {
+      "id": "b2",
+      "type": "intuition",
+      "badge": "MODEL",
+      "text": "ER modelling is casting, not accounting: decide *who* exists in your story (entities), *what you know* about them (attributes), and *how they relate* (relationships) — before a single table exists. The relational schema is a translation of this story, and the mapping rules decide how faithfully it survives."
+    },
+    {
+      "id": "b3",
+      "type": "example",
+      "badge": "MODEL",
+      "text": "`Student(roll_no, name, dept)` — roll_no is the key attribute; the entity set maps to a relation with roll_no as its primary key. A weak entity (Dependent) has no key of its own and needs its owner entity plus a partial key."
+    },
+    {
+      "id": "b4",
+      "type": "check",
+      "badge": "VERIFIED",
+      "prompt": "Sanity-check your modelling reflex with a quick verified problem before moving to relationships.",
+      "foundry": "dbms.fd_closure"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=66"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "edgen-twin"
+version = "0.1.0"
+description = "EdGen learner model (Twin): BKT mastery, FSRS-style forgetting, calibration"
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["src"]

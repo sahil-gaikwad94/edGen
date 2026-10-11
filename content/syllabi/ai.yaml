@@ -1,0 +1,206 @@
+track_id: ai
+version: 1
+title: "Applied AI Engineering"
+tagline: "Build useful LLM systems, evaluate them, and operate them responsibly"
+description: "A complete applied-AI path from language-model fundamentals through structured outputs, tools, retrieval, evaluation, fine-tuning, inference, safety, multimodal systems, and production operations."
+goal_type: role
+audience: "Software engineers moving into applied AI and AI product engineering"
+estimated_hours: 374
+outcome: "Ship an AI feature whose behavior, citations, safety, latency, and cost are measured and observable."
+scope_note: "Model APIs, agent frameworks, and protocols evolve quickly. Learn durable concepts first; provider-specific details are treated as replaceable adapters. Model-judged feedback is never labeled code-verified."
+phases:
+  - id: foundations
+    title: "Foundations for AI Products"
+    summary: "Build the software and data foundations required to reason about model behavior."
+    modules:
+      - id: python_data_engineering
+        title: "Python, data, and reproducible experiments"
+        hours: 24
+        summary: "Prepare reliable data and programmatic workflows before adding a model."
+        topics:
+          - "Python types, functions, packages, async I/O, and error handling"
+          - "JSON, schemas, data validation, encodings, and malformed-input handling"
+          - "HTTP clients, retries, timeouts, pagination, and rate-limit behavior"
+          - "Tabular/text datasets, cleaning, deduplication, and provenance"
+          - "Notebooks versus production modules, environments, and dependency locks"
+          - "Deterministic sampling, seeds, experiment logs, and reproducibility"
+        practice: ["Build a typed ingestion script with validation and replayable fixtures"]
+      - id: llm_fundamentals
+        title: "Language-model fundamentals"
+        hours: 30
+        summary: "Understand the model interface, token generation, context limits, and failure modes."
+        topics:
+          - "Tokens, tokenization, vocabulary, context windows, and truncation"
+          - "Transformer and attention intuition, pretraining, instruction tuning, and alignment"
+          - "Next-token generation, sampling, temperature, top-p, and determinism"
+          - "System/user/tool messages, conversation state, and prompt serialization"
+          - "Hallucination, calibration, uncertainty, and distribution shift"
+          - "Model capability boundaries, latency, throughput, and API constraints"
+        practice: ["Compare controlled prompts and identify which behavior is model versus application logic"]
+  - id: interaction_patterns
+    title: "Reliable Model Interaction"
+    summary: "Make generations structured, composable, and safe to integrate with software."
+    modules:
+      - id: prompting_structured_outputs
+        title: "Prompt design and structured outputs"
+        hours: 24
+        summary: "Specify desired behavior and validate model output at the application boundary."
+        topics:
+          - "Instruction hierarchy, examples, delimiters, and prompt decomposition"
+          - "JSON/schema-constrained output, parsing, validation, and repair policies"
+          - "Function/tool calling contracts, argument validation, and typed results"
+          - "Prompt templates, versioning, regression tests, and prompt injection boundaries"
+          - "Output refusal, uncertainty statements, and safe fallbacks"
+          - "Prompt compression and context selection under token budgets"
+        practice: ["Design a constrained extraction workflow with explicit invalid-output handling"]
+      - id: tool_use_agents
+        title: "Tools, workflows, and agents"
+        hours: 30
+        summary: "Orchestrate tools through bounded, inspectable state machines rather than opaque loops."
+        topics:
+          - "Tool schemas, least privilege, allowlists, and side-effect boundaries"
+          - "Planning/execution loops, stopping criteria, and bounded iteration"
+          - "State machines, checkpoints, retries, and resumable workflows"
+          - "Memory design, conversation state, summaries, and stale-context risks"
+          - "Multi-step orchestration, parallel calls, and dependency management"
+          - "Human approval gates for consequential actions"
+          - "Agent traces, tool errors, recovery, and reproducible replay"
+        practice: ["Implement a bounded agent workflow with a deterministic test harness"]
+  - id: retrieval_and_evaluation
+    title: "Retrieval and Evaluation"
+    summary: "Ground answers in trusted data and prove behavior with representative test sets."
+    modules:
+      - id: embeddings_search
+        title: "Embeddings and retrieval foundations"
+        hours: 26
+        summary: "Choose representations and retrieval strategies using measurable relevance."
+        topics:
+          - "Embedding models, vector spaces, similarity metrics, and normalization"
+          - "Chunking strategies, overlap, metadata, and source-span preservation"
+          - "Vector indexes, approximate nearest neighbors, and filtering"
+          - "Lexical search, BM25, hybrid retrieval, and query expansion"
+          - "Reranking, candidate generation, top-k selection, and latency trade-offs"
+          - "Freshness, deletion, ACL filtering, and multi-tenant retrieval"
+        practice: ["Build a retrieval benchmark and compare lexical, dense, and hybrid search"]
+      - id: rag_systems
+        title: "Retrieval-augmented generation"
+        hours: 30
+        summary: "Construct a complete retrieval-to-answer pipeline with provenance and abstention."
+        topics:
+          - "Document parsing, cleaning, indexing, and source/version tracking"
+          - "Query understanding, filters, reranking, and context assembly"
+          - "Citation generation, quote-span verification, and attribution display"
+          - "Answer grounding, contradiction handling, and abstention thresholds"
+          - "RAG failure analysis: retrieval miss, context loss, and generation error"
+          - "Caching, incremental re-indexing, access control, and deletion workflows"
+        practice: ["Build a citation-bearing RAG answerer and test it against unanswerable questions"]
+      - id: evaluation_experimentation
+        title: "Evaluation, experiments, and quality gates"
+        hours: 34
+        summary: "Turn open-ended model quality into tracked datasets, metrics, and release decisions."
+        topics:
+          - "Evaluation datasets, representative sampling, leakage, and version control"
+          - "Task metrics: exact match, F1, retrieval recall/precision, and ranking quality"
+          - "Citation-span faithfulness, groundedness, completeness, and abstention quality"
+          - "Human rubrics, model judges, judge calibration, and disagreement analysis"
+          - "Pairwise comparisons, confidence intervals, significance, and experiment design"
+          - "Adversarial, boundary, multilingual, and regression test suites"
+          - "Offline/online evaluation, feedback loops, and rollout guardrails"
+          - "Cost, latency, and quality Pareto frontiers"
+        practice: ["Create a versioned eval set and block a release on a measurable regression"]
+  - id: adaptation_and_inference
+    title: "Adaptation and Inference"
+    summary: "Adapt models where justified and serve them within product budgets."
+    modules:
+      - id: fine_tuning
+        title: "Fine-tuning and model adaptation"
+        hours: 24
+        summary: "Know when prompting, retrieval, or fine-tuning is the right adaptation tool."
+        topics:
+          - "Prompting versus RAG versus fine-tuning decision criteria"
+          - "Training examples, data quality, deduplication, and contamination checks"
+          - "Supervised fine-tuning, instruction tuning, and preference data concepts"
+          - "LoRA/QLoRA adapters, rank, target modules, and memory trade-offs"
+          - "Train/validation splits, overfitting, and task-specific evaluation"
+          - "Model cards, licensing, privacy, and dataset provenance"
+        practice: ["Compare a retrieval baseline with an adaptation experiment on held-out examples"]
+      - id: inference_serving_cost
+        title: "Inference, serving, and cost engineering"
+        hours: 28
+        summary: "Control throughput, latency, reliability, and per-request spend."
+        topics:
+          - "Token budgets, context planning, prompt/output cost, and cost attribution"
+          - "Streaming responses, time-to-first-token, cancellation, and backpressure"
+          - "Batching, concurrency, quotas, retries, circuit breakers, and provider fallbacks"
+          - "Quantization, speculative decoding, and serving efficiency concepts"
+          - "Model routing, small/large model cascades, and quality thresholds"
+          - "Caching prompts/results, cache-key safety, and freshness constraints"
+          - "Capacity planning, rate limits, budget alerts, and graceful degradation"
+        practice: ["Design a service that meets a latency/cost budget with quality guardrails"]
+  - id: safety_and_multimodal
+    title: "Safety, Multimodal, and Interoperability"
+    summary: "Protect users and systems while expanding beyond text-only interactions."
+    modules:
+      - id: ai_security_safety
+        title: "AI security, privacy, and guardrails"
+        hours: 28
+        summary: "Treat model inputs and outputs as untrusted and constrain tool authority."
+        topics:
+          - "Direct and indirect prompt injection, untrusted retrieved text, and delimiters"
+          - "Tool abuse, excessive agency, privilege boundaries, and approval gates"
+          - "Data exfiltration, secrets, PII, tenant isolation, and retention policy"
+          - "Output validation, policy checks, moderation, and safe refusal behavior"
+          - "Canary tokens, attack success rate, and security evaluation harnesses"
+          - "Threat modeling, red teaming, incident handling, and abuse monitoring"
+          - "Bias, accessibility, user disclosure, and responsible deployment"
+        practice: ["Run an injection test suite and measure attack success with a canary"]
+      - id: multimodal_systems
+        title: "Multimodal AI systems"
+        hours: 20
+        summary: "Integrate image, audio, and mixed-modality models with clear data boundaries."
+        topics:
+          - "Image inputs, resolution/cropping, OCR, and visual grounding"
+          - "Speech recognition, diarization, timestamps, and transcription uncertainty"
+          - "Text-to-speech, voice interaction, interruption, and turn-taking"
+          - "Audio/image token budgets, latency, and modality-specific evals"
+          - "Multimodal retrieval, metadata, consent, and sensitive-media handling"
+        practice: ["Prototype one image or audio workflow with modality-specific tests"]
+      - id: protocols_integrations
+        title: "AI protocols and integrations"
+        hours: 18
+        summary: "Connect model tools and external systems through explicit, permissioned contracts."
+        topics:
+          - "MCP concepts: clients, servers, tools, resources, prompts, and transports"
+          - "Authentication, scopes, trust boundaries, and server allowlists"
+          - "Tool discovery, schema validation, result-size limits, and timeouts"
+          - "Interoperability, versioning, compatibility, and protocol threat modeling"
+          - "Connectors, audit trails, user consent, and revocation"
+        practice: ["Integrate a least-privilege tool server behind an approval boundary"]
+  - id: production_capstone
+    title: "Production AI Engineering"
+    summary: "Operate an AI feature with observability, privacy, and measured behavior."
+    modules:
+      - id: observability_governance
+        title: "Observability, governance, and release operations"
+        hours: 24
+        summary: "Make AI-specific behavior visible and maintainable over model and data changes."
+        topics:
+          - "Request IDs, traces, prompt/model versions, and privacy-safe telemetry"
+          - "Token, latency, cache, refusal, tool, and retrieval metrics"
+          - "Prompt/model rollout, canaries, rollback, and provider-change regression"
+          - "Incident response for quality, safety, latency, and cost failures"
+          - "Data retention, consent, deletion, auditability, and governance records"
+          - "Human feedback triage and feedback-loop poisoning risks"
+        practice: ["Build dashboards and a release gate for a versioned model-backed feature"]
+      - id: ai_product_capstone
+        title: "Applied AI capstone"
+        hours: 34
+        summary: "Ship a bounded AI product workflow with verified evidence and a production plan."
+        topics:
+          - "Define users, success metrics, misuse cases, and explicit non-goals"
+          - "Select a baseline and document why model use is justified"
+          - "Build retrieval/tool boundaries, validation, and a user-facing fallback"
+          - "Create evaluation and adversarial datasets with regression thresholds"
+          - "Measure quality, citation faithfulness, latency, and cost per task"
+          - "Publish a threat model, runbook, model/data card, and rollback plan"
+        practice: ["Demo the system, inspect an agent trace, and defend a release decision"]

@@ -1,0 +1,62 @@
+{
+  "lesson_id": "dbms.txn.conflict_serializable@v1",
+  "node_id": "dbms.txn.conflict_serializable",
+  "core_version": 1,
+  "lang": "en",
+  "depth": "standard",
+  "title": "Conflict serializability and precedence graphs",
+  "review_status": "reviewed",
+  "blocks": [
+    {
+      "id": "b1",
+      "type": "claim",
+      "badge": "SOURCED",
+      "text": "Two operations conflict when they belong to different transactions, act on the same data item, and at least one is a write.",
+      "receipt": {"kind": "source_span", "source_id": "edgen_syllabus_notes", "quote": "Two operations conflict when they belong to different transactions, act on the"}
+    },
+    {
+      "id": "b2",
+      "type": "claim",
+      "badge": "SOURCED",
+      "text": "For every pair of conflicting operations, the precedence graph gets an edge from the earlier transaction to the later one. The schedule is conflict serializable iff the graph is acyclic; any topological order is an equivalent serial schedule.",
+      "receipt": {"kind": "source_span", "source_id": "edgen_syllabus_notes", "quote": "The schedule is conflict\nserializable iff this graph is acyclic; any topological order of the graph is an"}
+    },
+    {
+      "id": "b3",
+      "type": "intuition",
+      "badge": "MODEL",
+      "text": "The graph answers one question: *can I shuffle this interleaving back into some serial order without changing who-wrote-what-when?* A cycle means two transactions each went first — that story cannot be untangled."
+    },
+    {
+      "id": "b4",
+      "type": "example",
+      "badge": "VERIFIED",
+      "text": "T1:w(X), T2:w(X), T2:w(Y), T1:r(Y): the X pair gives T1 → T2, the Y pair gives T2 → T1 — a cycle. Verdict: **NONE** (not conflict serializable).",
+      "receipt": {"kind": "executed", "detail": "Golden case cycle_none, verified by dbms.serializability."}
+    },
+    {
+      "id": "b5",
+      "type": "counterexample",
+      "badge": "SOURCED",
+      "text": "Two reads of the same item never conflict — read-read pairs create no edge. Treating every concurrent access as an edge invents cycles that don't exist.",
+      "receipt": {"kind": "source_span", "source_id": "edgen_syllabus_notes", "quote": "Read-before-write on the same item, write-before-read,\nand write-before-write all create edges; operations of the same transaction, or"}
+    },
+    {
+      "id": "b6",
+      "type": "viz",
+      "template": "fd_graph",
+      "spec": {
+        "caption": "The golden cycle: T1 → T2 on X, T2 → T1 on Y.",
+        "nodes": ["T1", "T2"],
+        "edges": [{"from": "T1", "to": "T2", "label": "w(X)→w(X)"}, {"from": "T2", "to": "T1", "label": "w(Y)→r(Y)"}]
+      }
+    },
+    {
+      "id": "b7",
+      "type": "check",
+      "badge": "VERIFIED",
+      "foundry": "dbms.serializability",
+      "prompt": "Draw the edges on a fresh schedule — grading accepts any valid serial order, so focus on the graph, not the alphabet."
+    }
+  ]
+}

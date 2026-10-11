@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=66"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "edgen-graph"
+version = "0.1.0"
+description = "EdGen concept graph + track lens engine"
+requires-python = ">=3.11"
+dependencies = ["pyyaml"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

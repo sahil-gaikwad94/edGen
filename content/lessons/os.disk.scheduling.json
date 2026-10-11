@@ -1,0 +1,56 @@
+{
+  "lesson_id": "os.disk.scheduling@v1",
+  "node_id": "os.disk.scheduling",
+  "core_version": 1,
+  "lang": "en",
+  "depth": "standard",
+  "title": "Disk-scheduling algorithms",
+  "review_status": "reviewed",
+  "blocks": [
+    {
+      "id": "b1",
+      "type": "claim",
+      "badge": "SOURCED",
+      "text": "Disk scheduling minimises total head movement (seek distance) across requested cylinders.",
+      "receipt": {"kind": "source_span", "source_id": "edgen_syllabus_notes", "quote": "Disk scheduling minimises total head movement (seek distance) across requested"}
+    },
+    {
+      "id": "b2",
+      "type": "claim",
+      "badge": "SOURCED",
+      "text": "SCAN moves to the physical edge before reversing; LOOK reverses at the last request. C-SCAN services in one direction only and wraps; C-LOOK wraps between extreme requests instead of disk edges.",
+      "receipt": {"kind": "source_span", "source_id": "edgen_syllabus_notes", "quote": "LOOK and C-LOOK are the same as SCAN and C-SCAN except"}
+    },
+    {
+      "id": "b3",
+      "type": "intuition",
+      "badge": "MODEL",
+      "text": "SCAN/LOOK trade a little extra travel for fairness: nobody waits an entire sweep. SSTF plays shortest-job-first on cylinders — fast on average, but a far request can starve. FCFS is the honest baseline every distance calculation starts from."
+    },
+    {
+      "id": "b4",
+      "type": "example",
+      "badge": "VERIFIED",
+      "text": "Head 53, queue `98 183 37 122 14 124 65 67`: SCAN (right) = **331**, LOOK (right) = **299**, SSTF = **236**, FCFS = **640**. The SCAN–LOOK gap is exactly the edge detour ×2.",
+      "receipt": {"kind": "executed", "detail": "Golden cases from os.disk_scheduling, hand-verified (Galvin-style canonical example)."}
+    },
+    {
+      "id": "b5",
+      "type": "viz",
+      "template": "disk_track",
+      "spec": {
+        "head": 53,
+        "requests": [98, 183, 37, 122, 14, 124, 65, 67],
+        "order": [65, 67, 98, 122, 124, 183, 199, 37, 14],
+        "algorithm": "SCAN →"
+      }
+    },
+    {
+      "id": "b6",
+      "type": "check",
+      "badge": "VERIFIED",
+      "foundry": "os.disk_scheduling",
+      "prompt": "Compute the seek distance for a fresh queue — including the head's first move."
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+# Hand-verified golden cases for os.disk_scheduling.
+# Canonical example (Galvin-style): head 53, requests 98 183 37 122 14 124 65 67.
+# SCAN=331 (edge 199 included), LOOK=299, SSTF=236, FCFS=640.
+generator: os.disk_scheduling
+cases:
+  - name: fcfs_textbook
+    params:
+      mode: fcfs
+      head: 53
+      requests: [98, 183, 37, 122, 14, 124, 65, 67]
+      max_cyl: 200
+    expected: 640
+  - name: sstf_textbook
+    params:
+      mode: sstf
+      head: 53
+      requests: [98, 183, 37, 122, 14, 124, 65, 67]
+      max_cyl: 200
+    expected: 236
+  - name: scan_right_textbook
+    params:
+      mode: scan
+      head: 53
+      requests: [98, 183, 37, 122, 14, 124, 65, 67]
+      max_cyl: 200
+      direction: right
+    expected: 331
+  - name: look_right_textbook
+    params:
+      mode: look
+      head: 53
+      requests: [98, 183, 37, 122, 14, 124, 65, 67]
+      max_cyl: 200
+      direction: right
+    expected: 299
+  - name: cscan_right_convention
+    # Our documented convention: sweep to edge 199, count the 199→0 jump.
+    params:
+      mode: cscan
+      head: 53
+      requests: [98, 183, 37, 122, 14, 124, 65, 67]
+      max_cyl: 200
+      direction: right
+    expected: 382

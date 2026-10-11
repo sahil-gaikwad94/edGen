@@ -1,0 +1,432 @@
+# EdGen Concept Graph v0 — Operating Systems (GATE CSE W0 slice)
+# Schema per SystemsDesign §2. Human-authored; reviewed for W0 concierge test.
+graph_version: 0
+subject: os
+default_sources:
+  - {id: src_os_notes, kind: syllabus_notes, license: CC-BY-SA-4.0}
+nodes:
+  # --- Processes ---
+  - id: os.process.basics
+    title: "Processes: states, PCB, and context switches"
+    topic: os.process
+    prereqs: []
+    est_minutes: 12
+    difficulty_prior: 0.50
+    misconceptions:
+      - "Threads and processes share the same address space rules"
+      - "A context switch saves the running process's state into the PCB — it is OS work, not user work"
+
+  - id: os.process.threads
+    title: "Threads, shared address space, and user/kernel threads"
+    topic: os.process
+    prereqs: [os.process.basics]
+    est_minutes: 12
+    difficulty_prior: 0.48
+    misconceptions:
+      - "Kernel-level and user-level threads map 1:1 to each other"
+
+  - id: os.process.scheduling_criteria
+    title: "CPU/IO burst cycles and scheduling criteria"
+    topic: os.scheduling
+    prereqs: [os.process.basics]
+    est_minutes: 8
+    difficulty_prior: 0.50
+
+  - id: os.scheduling.queues
+    title: "Scheduling queues and preemption"
+    topic: os.scheduling
+    prereqs: [os.process.scheduling_criteria]
+    est_minutes: 8
+    difficulty_prior: 0.50
+
+  - id: os.scheduling.fcfs
+    title: "FCFS scheduling"
+    topic: os.scheduling
+    prereqs: [os.scheduling.queues]
+    est_minutes: 8
+    difficulty_prior: 0.55
+    generators: [os.cpu_scheduling]
+
+  - id: os.scheduling.sjf
+    title: "Shortest-job-first (non-preemptive) scheduling"
+    topic: os.scheduling
+    prereqs: [os.scheduling.fcfs]
+    est_minutes: 10
+    difficulty_prior: 0.50
+    generators: [os.cpu_scheduling]
+    misconceptions:
+      - "SJF picks the shortest burst among processes that have not arrived yet"
+
+  - id: os.scheduling.srtf
+    title: "Shortest-remaining-time-first scheduling"
+    topic: os.scheduling
+    prereqs: [os.scheduling.sjf]
+    est_minutes: 10
+    difficulty_prior: 0.45
+    generators: [os.cpu_scheduling]
+
+  - id: os.scheduling.rr
+    title: "Round robin with a time quantum"
+    topic: os.scheduling
+    prereqs: [os.scheduling.fcfs]
+    est_minutes: 12
+    difficulty_prior: 0.45
+    generators: [os.cpu_scheduling]
+    misconceptions:
+      - "If the last burst is shorter than the quantum, the process still waits a full quantum"
+
+  - id: os.scheduling.priority
+    title: "Priority scheduling and starvation"
+    topic: os.scheduling
+    prereqs: [os.scheduling.sjf]
+    est_minutes: 8
+    difficulty_prior: 0.50
+
+  - id: os.scheduling.multilevel
+    title: "Multilevel and multilevel-feedback queues"
+    topic: os.scheduling
+    prereqs: [os.scheduling.priority, os.scheduling.rr]
+    est_minutes: 10
+    difficulty_prior: 0.42
+
+  - id: os.scheduling.convoy
+    title: "The convoy effect"
+    topic: os.scheduling
+    prereqs: [os.scheduling.fcfs]
+    est_minutes: 6
+    difficulty_prior: 0.55
+
+  - id: os.scheduling.compare
+    title: "Choosing an algorithm: Gantt charts and averages"
+    topic: os.scheduling
+    prereqs: [os.scheduling.rr, os.scheduling.sjf, os.scheduling.priority]
+    est_minutes: 10
+    difficulty_prior: 0.45
+    generators: [os.cpu_scheduling]
+
+  # --- Synchronisation ---
+  - id: os.sync.critical
+    title: "The critical-section problem"
+    topic: os.sync
+    prereqs: [os.process.basics]
+    est_minutes: 10
+    difficulty_prior: 0.50
+
+  - id: os.sync.race
+    title: "Race conditions"
+    topic: os.sync
+    prereqs: [os.sync.critical]
+    est_minutes: 10
+    difficulty_prior: 0.45
+    misconceptions:
+      - "Atomic machine instructions cannot produce a race condition on shared data"
+
+  - id: os.sync.peterson
+    title: "Peterson's solution"
+    topic: os.sync
+    prereqs: [os.sync.race]
+    est_minutes: 10
+    difficulty_prior: 0.40
+
+  - id: os.sync.semaphores
+    title: "Semaphores: counting and binary"
+    topic: os.sync
+    prereqs: [os.sync.critical]
+    est_minutes: 10
+    difficulty_prior: 0.48
+
+  - id: os.sync.producer_consumer
+    title: "Producer–consumer with semaphores"
+    topic: os.sync
+    prereqs: [os.sync.semaphores]
+    est_minutes: 12
+    difficulty_prior: 0.40
+    misconceptions:
+      - "Swapping wait(empty) and wait(full) still solves the problem"
+
+  - id: os.sync.readers_writers
+    title: "Readers–writers"
+    topic: os.sync
+    prereqs: [os.sync.semaphores]
+    est_minutes: 12
+    difficulty_prior: 0.40
+
+  - id: os.sync.dining
+    title: "Dining philosophers"
+    topic: os.sync
+    prereqs: [os.sync.semaphores]
+    est_minutes: 10
+    difficulty_prior: 0.42
+
+  - id: os.sync.monitors
+    title: "Monitors and condition variables"
+    topic: os.sync
+    prereqs: [os.sync.semaphores]
+    est_minutes: 10
+    difficulty_prior: 0.40
+
+  # --- Deadlock ---
+  - id: os.deadlock.conditions
+    title: "Deadlock: four necessary conditions"
+    topic: os.deadlock
+    prereqs: [os.sync.critical]
+    est_minutes: 8
+    difficulty_prior: 0.55
+
+  - id: os.deadlock.graphs
+    title: "Resource-allocation graphs"
+    topic: os.deadlock
+    prereqs: [os.deadlock.conditions]
+    est_minutes: 8
+    difficulty_prior: 0.50
+    misconceptions:
+      - "A cycle in a resource-allocation graph always means deadlock (only with single-instance resources)"
+
+  - id: os.deadlock.prevention
+    title: "Prevention and avoidance"
+    topic: os.deadlock
+    prereqs: [os.deadlock.conditions]
+    est_minutes: 8
+    difficulty_prior: 0.50
+
+  - id: os.deadlock.banker
+    title: "Banker's algorithm and safe states"
+    topic: os.deadlock
+    prereqs: [os.deadlock.prevention]
+    est_minutes: 14
+    difficulty_prior: 0.38
+    misconceptions:
+      - "Unsafe state means deadlock has happened"
+      - "A safe state guarantees no process will ever wait"
+
+  - id: os.deadlock.detection
+    title: "Detection and recovery"
+    topic: os.deadlock
+    prereqs: [os.deadlock.graphs]
+    est_minutes: 8
+    difficulty_prior: 0.45
+
+  # --- Memory ---
+  - id: os.memory.binding
+    title: "Address binding and the three compile/run/load stages"
+    topic: os.memory
+    prereqs: [os.process.basics]
+    est_minutes: 10
+    difficulty_prior: 0.50
+
+  - id: os.memory.logical_physical
+    title: "Logical vs physical address space"
+    topic: os.memory
+    prereqs: [os.memory.binding]
+    est_minutes: 6
+    difficulty_prior: 0.55
+
+  - id: os.memory.contiguous
+    title: "Contiguous allocation strategies"
+    topic: os.memory
+    prereqs: [os.memory.logical_physical]
+    est_minutes: 10
+    difficulty_prior: 0.48
+
+  - id: os.memory.fragmentation
+    title: "Internal vs external fragmentation"
+    topic: os.memory
+    prereqs: [os.memory.contiguous]
+    est_minutes: 8
+    difficulty_prior: 0.45
+    misconceptions:
+      - "Paging still suffers from external fragmentation"
+
+  - id: os.memory.swapping
+    title: "Swapping"
+    topic: os.memory
+    prereqs: [os.memory.logical_physical]
+    est_minutes: 8
+    difficulty_prior: 0.50
+
+  - id: os.memory.segmentation
+    title: "Segmentation"
+    topic: os.memory
+    prereqs: [os.memory.fragmentation]
+    est_minutes: 10
+    difficulty_prior: 0.45
+
+  - id: os.memory.paging_concepts
+    title: "Paging: frames, pages, and page tables"
+    topic: os.paging
+    prereqs: [os.memory.logical_physical]
+    est_minutes: 12
+    difficulty_prior: 0.48
+
+  - id: os.memory.paging_address
+    title: "Physical address = frame × page size + offset"
+    topic: os.paging
+    prereqs: [os.memory.paging_concepts]
+    est_minutes: 10
+    difficulty_prior: 0.42
+
+  - id: os.memory.tlb
+    title: "TLB and effective access time"
+    topic: os.paging
+    prereqs: [os.memory.paging_address]
+    est_minutes: 10
+    difficulty_prior: 0.40
+    misconceptions:
+      - "TLB hit ratio is applied to the page-table lookup time only, not the whole access"
+
+  - id: os.memory.hierarchical
+    title: "Multi-level page tables"
+    topic: os.paging
+    prereqs: [os.memory.paging_address]
+    est_minutes: 10
+    difficulty_prior: 0.38
+
+  - id: os.memory.paged_segments
+    title: "Paged segmentation"
+    topic: os.paging
+    prereqs: [os.memory.segmentation, os.memory.paging_concepts]
+    est_minutes: 8
+    difficulty_prior: 0.45
+
+  # --- Virtual memory ---
+  - id: os.vmemory.demand_paging
+    title: "Demand paging and page faults"
+    topic: os.vmemory
+    prereqs: [os.memory.paging_concepts]
+    est_minutes: 10
+    difficulty_prior: 0.48
+
+  - id: os.vmemory.thrashing
+    title: "Thrashing and the working-set model"
+    topic: os.vmemory
+    prereqs: [os.vmemory.demand_paging]
+    est_minutes: 10
+    difficulty_prior: 0.42
+    misconceptions:
+      - "Giving a process more frames can never increase its fault rate"
+
+  - id: os.vmemory.page_replacement
+    title: "Page-replacement algorithms"
+    topic: os.vmemory
+    prereqs: [os.vmemory.demand_paging]
+    est_minutes: 14
+    difficulty_prior: 0.42
+    generators: [os.page_replacement]
+
+  - id: os.vmemory.lru_impl
+    title: "Implementing LRU: counters, stacks, second chance"
+    topic: os.vmemory
+    prereqs: [os.vmemory.page_replacement]
+    est_minutes: 10
+    difficulty_prior: 0.40
+
+  - id: os.vmemory.frame_allocation
+    title: "Frame allocation: global vs local replacement"
+    topic: os.vmemory
+    prereqs: [os.vmemory.page_replacement]
+    est_minutes: 8
+    difficulty_prior: 0.45
+
+  - id: os.vmemory.belady
+    title: "Belady's anomaly and stack algorithms"
+    topic: os.vmemory
+    prereqs: [os.vmemory.page_replacement]
+    est_minutes: 8
+    difficulty_prior: 0.40
+    misconceptions:
+      - "More frames always means fewer page faults (FIFO violates this)"
+
+  - id: os.vmemory.copy_on_write
+    title: "Copy-on-write after fork"
+    topic: os.vmemory
+    prereqs: [os.vmemory.demand_paging]
+    est_minutes: 6
+    difficulty_prior: 0.45
+
+  # --- Files & storage ---
+  - id: os.files.interface
+    title: "File attributes and operations"
+    topic: os.files
+    prereqs: [os.process.basics]
+    est_minutes: 8
+    difficulty_prior: 0.55
+
+  - id: os.files.directories
+    title: "Directories and directory structures"
+    topic: os.files
+    prereqs: [os.files.interface]
+    est_minutes: 8
+    difficulty_prior: 0.50
+
+  - id: os.files.allocation
+    title: "File allocation: contiguous, linked, indexed"
+    topic: os.files
+    prereqs: [os.files.interface]
+    est_minutes: 12
+    difficulty_prior: 0.45
+    misconceptions:
+      - "Linked allocation supports O(1) direct access"
+
+  - id: os.files.free_space
+    title: "Free-space management"
+    topic: os.files
+    prereqs: [os.files.allocation]
+    est_minutes: 8
+    difficulty_prior: 0.45
+
+  - id: os.files.fat
+    title: "File-allocation table"
+    topic: os.files
+    prereqs: [os.files.allocation]
+    est_minutes: 6
+    difficulty_prior: 0.45
+
+  - id: os.files.consistency
+    title: "File-system consistency and journaling"
+    topic: os.files
+    prereqs: [os.files.directories]
+    est_minutes: 8
+    difficulty_prior: 0.42
+
+  - id: os.disk.structure
+    title: "Disk structure: seek and rotational latency"
+    topic: os.disk
+    prereqs: [os.files.interface]
+    est_minutes: 10
+    difficulty_prior: 0.50
+
+  - id: os.disk.scheduling
+    title: "Disk-scheduling algorithms"
+    topic: os.disk
+    prereqs: [os.disk.structure]
+    est_minutes: 12
+    difficulty_prior: 0.45
+    generators: [os.disk_scheduling]
+
+  - id: os.disk.raid
+    title: "RAID levels"
+    topic: os.disk
+    prereqs: [os.disk.structure]
+    est_minutes: 10
+    difficulty_prior: 0.42
+
+  - id: os.io.control
+    title: "Polling, interrupts, and DMA"
+    topic: os.io
+    prereqs: [os.process.basics]
+    est_minutes: 10
+    difficulty_prior: 0.48
+
+  - id: os.io.buffering
+    title: "Buffers, spooling, and caching"
+    topic: os.io
+    prereqs: [os.io.control]
+    est_minutes: 8
+    difficulty_prior: 0.45
+
+  - id: os.io.channels
+    title: "I/O channels and controllers"
+    topic: os.io
+    prereqs: [os.io.control]
+    est_minutes: 6
+    difficulty_prior: 0.48

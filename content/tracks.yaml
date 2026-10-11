@@ -1,0 +1,44 @@
+# Track registry — "a track is a lens" (IdeaBrief §5).
+# All four complete syllabus maps are published. Only GATE CSE currently has
+# an interactive learner graph/lesson/practice slice; other tracks are syllabus previews.
+tracks:
+  - id: gate_cse
+    title: "GATE CSE"
+    blurb: "Complete exam syllabus; interactive OS + DBMS graph and verified practice are live."
+    goal_type: exam
+    status: active
+    curriculum_status: published
+    experience_status: partial
+    lenses: [gate_cse]
+    default_lens: gate_cse
+    accent: "#A78BFA"
+  - id: full_stack
+    title: "Full Stack"
+    blurb: "Complete SDE-1 path from browser fundamentals to secure, observable production systems."
+    goal_type: role
+    status: upcoming
+    curriculum_status: published
+    experience_status: syllabus
+    lenses: []
+    default_lens: full_stack
+    accent: "#69D7C5"
+  - id: ai
+    title: "Applied AI"
+    blurb: "Complete applied-AI path through agents, RAG, evaluation, safety, inference, and production."
+    goal_type: role
+    status: upcoming
+    curriculum_status: published
+    experience_status: syllabus
+    lenses: []
+    default_lens: ai
+    accent: "#F7B36B"
+  - id: ml
+    title: "Machine Learning"
+    blurb: "Complete ML engineering path from math and modeling to responsible production systems."
+    goal_type: role
+    status: upcoming
+    curriculum_status: published
+    experience_status: syllabus
+    lenses: []
+    default_lens: ml
+    accent: "#B59CFF"

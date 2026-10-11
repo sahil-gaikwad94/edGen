@@ -1,0 +1,53 @@
+# Hand-verified golden cases for dbms.fd_closure.
+generator: dbms.fd_closure
+cases:
+  - name: closure_transitive_chain
+    params:
+      mode: closure
+      attrs: [A, B, C, D]
+      fds: [[["A"], "B"], [["B"], "C"], [["C"], "D"]]
+      query: [A]
+    expected: "ABCD"
+  - name: closure_single_step
+    params:
+      mode: closure
+      attrs: [A, B, C]
+      fds: [[["A"], "B"], [["B"], "C"]]
+      query: [B]
+    expected: "BC"
+  - name: keys_simple_chain
+    params:
+      mode: keys
+      attrs: [A, B, C]
+      fds: [[["A"], "B"], [["B"], "C"]]
+    expected: "A"
+  - name: keys_two_keys
+    params:
+      mode: keys
+      attrs: [A, B, C]
+      fds: [[["A", "B"], "C"], [["C"], "B"]]
+    expected: "AB,AC"
+  - name: nf_transitive_is_2nf
+    params:
+      mode: normal_form
+      attrs: [A, B, C]
+      fds: [[["A"], "B"], [["B"], "C"]]
+    expected: "2NF"
+  - name: nf_three_vs_bcnf_classic
+    params:
+      mode: normal_form
+      attrs: [A, B, C]
+      fds: [[["A", "B"], "C"], [["C"], "B"]]
+    expected: "3NF"
+  - name: nf_bcnf
+    params:
+      mode: normal_form
+      attrs: [A, B, C]
+      fds: [[["A", "B"], "C"], [["A"], "B"]]
+    expected: "BCNF"
+  - name: nf_partial_dependency_1nf
+    params:
+      mode: normal_form
+      attrs: [A, B, C, D]
+      fds: [[["A", "B"], "C"], [["A"], "D"]]
+    expected: "1NF"

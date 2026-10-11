@@ -1,0 +1,25 @@
+# Hand-verified golden cases for dbms.serializability.
+generator: dbms.serializability
+cases:
+  - name: simple_serializable_t2_t1
+    params:
+      ops:
+        - {tx: T1, rw: r, item: X}
+        - {tx: T2, rw: r, item: X}
+        - {tx: T1, rw: w, item: X}
+    expect_check: "T2,T1"   # only edge T2→T1 (T2's read before T1's write)
+  - name: cycle_none
+    params:
+      ops:
+        - {tx: T1, rw: w, item: X}
+        - {tx: T2, rw: w, item: X}
+        - {tx: T2, rw: w, item: Y}
+        - {tx: T1, rw: r, item: Y}
+    expect_check: "NONE"    # T1→T2 on X, T2→T1 on Y
+  - name: three_tx_star
+    params:
+      ops:
+        - {tx: T1, rw: r, item: X}
+        - {tx: T2, rw: r, item: X}
+        - {tx: T3, rw: w, item: X}
+    expect_check: "T1,T2,T3"

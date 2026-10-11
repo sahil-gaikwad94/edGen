@@ -1,0 +1,46 @@
+# Hand-verified golden cases for os.page_replacement (reviewed: W0, edGen team).
+generator: os.page_replacement
+cases:
+  - name: fifo_belady_3_frames
+    params:
+      mode: fifo
+      frames: 3
+      refs: [7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2]
+    expected: 10
+  - name: fifo_belady_4_frames_more_faults
+    params:
+      mode: fifo
+      frames: 4
+      refs: [7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2]
+    expected: 7
+  - name: belady_original_3_vs_4
+    # Belady's original anomaly string: 3 frames → 9, 4 frames → 10 (see test).
+    params:
+      mode: fifo
+      frames: 3
+      refs: [1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5]
+    expected: 9
+  - name: belady_original_4_frames
+    params:
+      mode: fifo
+      frames: 4
+      refs: [1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5]
+    expected: 10
+  - name: mixed_string_fifo
+    params:
+      mode: fifo
+      frames: 3
+      refs: [2, 3, 0, 3, 4, 4, 0, 4, 4, 4, 2, 1, 3, 3, 0, 0]
+    expected: 8
+  - name: mixed_string_lru
+    params:
+      mode: lru
+      frames: 3
+      refs: [2, 3, 0, 3, 4, 4, 0, 4, 4, 4, 2, 1, 3, 3, 0, 0]
+    expected: 8
+  - name: mixed_string_opt
+    params:
+      mode: opt
+      frames: 3
+      refs: [2, 3, 0, 3, 4, 4, 0, 4, 4, 4, 2, 1, 3, 3, 0, 0]
+    expected: 6

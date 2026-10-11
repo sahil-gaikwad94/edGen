@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=66"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "edgen-planner"
+version = "0.1.0"
+description = "EdGen daily planner: greedy gain/cost optimiser with logged propensities"
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["src"]

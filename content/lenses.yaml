@@ -1,0 +1,85 @@
+# Lens definitions — SystemsDesign §2.
+# Weight rules are fnmatch patterns compiled to per-node weights at load time.
+# GATE weights are anchored to historical marks weightage (IdeaBrief §6):
+# OS ~9, DBMS ~9 of the 100-mark paper; in graph v0 (OS+DBMS only) the lens
+# normalizes over available nodes, so readiness is always Σw·m/Σw.
+lenses:
+  - id: gate_cse
+    goal_type: exam
+    track: gate_cse
+    title: "GATE CSE — exam goal"
+    config:
+      exam: "GATE CSE"
+      exam_date_default_offset_days: 180
+      marks_per_subject:
+        os: 9
+        dbms: 9
+        ga: 15
+        eng_math: 13
+    milestones:
+      - {id: os_core, title: "OS core: scheduling, sync, memory", nodes: [os.scheduling.rr, os.sync.semaphores, os.vmemory.page_replacement]}
+      - {id: dbms_core, title: "DBMS core: normalization, transactions", nodes: [dbms.norm.bcnf, dbms.txn.conflict_serializable]}
+    weight_rules:
+      - match: "os.scheduling.*"
+        weight: 1.6
+      - match: "os.sync.*"
+        weight: 1.4
+      - match: "os.deadlock.*"
+        weight: 1.3
+      - match: "os.memory.*"
+        weight: 1.4
+      - match: "os.vmemory.*"
+        weight: 1.6
+      - match: "os.paging.*"
+        weight: 1.4
+      - match: "os.files.*"
+        weight: 1.0
+      - match: "os.disk.*"
+        weight: 1.1
+      - match: "os.io.*"
+        weight: 0.9
+      - match: "os.process.*"
+        weight: 1.0
+      - match: "dbms.er.*"
+        weight: 0.9
+      - match: "dbms.rel.*"
+        weight: 1.1
+      - match: "dbms.sql.*"
+        weight: 1.5
+      - match: "dbms.normalization.*"
+        weight: 1.7
+      - match: "dbms.txn.*"
+        weight: 1.5
+      - match: "dbms.cc.*"
+        weight: 1.3
+      - match: "dbms.indexing.*"
+        weight: 1.3
+      - match: "dbms.storage.*"
+        weight: 0.9
+      - match: "*"
+        weight: 1.0
+
+  # Declared so the product surface can preview readiness math for upcoming
+  # tracks. Empty weight rules = no graph nodes weighted yet → readiness
+  # reports null (honest, never a fake 0%).
+  - id: full_stack
+    goal_type: role
+    track: full_stack
+    title: "Full Stack — role goal (W2)"
+    config: {}
+    milestones: []
+    weight_rules: []
+  - id: ai
+    goal_type: role
+    track: ai
+    title: "AI — role goal (W3)"
+    config: {}
+    milestones: []
+    weight_rules: []
+  - id: ml
+    goal_type: role
+    track: ml
+    title: "ML — role goal (W2)"
+    config: {}
+    milestones: []
+    weight_rules: []

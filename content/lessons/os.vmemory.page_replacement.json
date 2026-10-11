@@ -1,0 +1,63 @@
+{
+  "lesson_id": "os.vmemory.page_replacement@v1",
+  "node_id": "os.vmemory.page_replacement",
+  "core_version": 1,
+  "lang": "en",
+  "depth": "standard",
+  "title": "Page-replacement algorithms",
+  "review_status": "reviewed",
+  "blocks": [
+    {
+      "id": "b1",
+      "type": "claim",
+      "badge": "SOURCED",
+      "text": "When a referenced page is not resident, the OS picks a victim frame, possibly writes it out if dirty, and brings the page in — every such event is a page fault.",
+      "receipt": {"kind": "source_span", "source_id": "edgen_syllabus_notes", "quote": "a page fault occurs when the referenced page is\nnot resident in memory; the OS must find a victim frame"}
+    },
+    {
+      "id": "b2",
+      "type": "claim",
+      "badge": "SOURCED",
+      "text": "FIFO evicts the oldest-loaded page and is subject to Belady's anomaly: for certain reference strings, more frames can mean more faults. LRU evicts the least recently used page and is a stack algorithm, so Belady's anomaly cannot occur. OPT evicts the page whose next use is farthest away and minimises faults — the lower bound we measure everything against.",
+      "receipt": {"kind": "source_span", "source_id": "edgen_syllabus_notes", "quote": "FIFO replacement evicts\nthe oldest-loaded resident page and is subject to Belady's anomaly: for certain"}
+    },
+    {
+      "id": "b3",
+      "type": "intuition",
+      "badge": "MODEL",
+      "text": "The three algorithms answer one question differently: *which resident page do we bet will hurt least if we drop it?* FIFO bets recency of load (cheap, dumb), LRU bets recency of use (good proxy for future), OPT bets on the actual future (impossible, optimal)."
+    },
+    {
+      "id": "b4",
+      "type": "example",
+      "badge": "VERIFIED",
+      "text": "Belady's original string `1 2 3 4 1 2 5 1 2 3 4 5`: FIFO with 3 frames faults **9** times, with 4 frames it faults **10** times. More frames, more faults — only possible for non-stack algorithms like FIFO.",
+      "receipt": {"kind": "executed", "detail": "Golden cases belady_original_3_vs_4 / belady_original_4_frames; verified by os.page_replacement."}
+    },
+    {
+      "id": "b5",
+      "type": "counterexample",
+      "badge": "SOURCED",
+      "text": "\"More frames always means fewer faults\" is false — Belady's anomaly is the counterexample, and it is exactly why LRU/OPT (stack algorithms) are the family worth understanding.",
+      "receipt": {"kind": "source_span", "source_id": "edgen_syllabus_notes", "quote": "increasing the number of frames can increase the number of"}
+    },
+    {
+      "id": "b6",
+      "type": "viz",
+      "template": "frames",
+      "spec": {
+        "frames": 3,
+        "refs": [2, 3, 0, 3, 4],
+        "algorithm": "fifo",
+        "caption": "After references 2,3,0 (all fault) and 3 (hit), reference 4 faults and evicts page 2 — the oldest loaded."
+      }
+    },
+    {
+      "id": "b7",
+      "type": "check",
+      "badge": "VERIFIED",
+      "foundry": "os.page_replacement",
+      "prompt": "Count the faults yourself on a fresh reference string — the oracle has already double-checked the answer."
+    }
+  ]
+}

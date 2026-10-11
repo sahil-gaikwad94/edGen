@@ -1,0 +1,61 @@
+# Problem Foundry registry — published generators (architecture §10).
+# A generator may only be served when trust.status = published.
+# Regenerate reports: python scripts/verify_foundry.py
+version: 1
+verified_on: "2026-10-11"
+generators:
+  - id: os.cpu_scheduling
+    version: 1
+    buckets: 5
+    instances_per_bucket: 60
+    nodes: [os.scheduling.fcfs, os.scheduling.sjf, os.scheduling.srtf, os.scheduling.rr]
+    trust:
+      status: published
+      differential_seeds: 10000
+      property_seeds: 1500
+      golden_cases: 3
+      reviewed_by: edgen-w0-review
+  - id: os.page_replacement
+    version: 1
+    buckets: 5
+    instances_per_bucket: 60
+    nodes: [os.vmemory.page_replacement]
+    trust:
+      status: published
+      differential_seeds: 10000
+      property_seeds: 1500
+      golden_cases: 7
+      reviewed_by: edgen-w0-review
+  - id: os.disk_scheduling
+    version: 1
+    buckets: 5
+    instances_per_bucket: 60
+    nodes: [os.disk.scheduling]
+    trust:
+      status: published
+      differential_seeds: 10000
+      property_seeds: 1500
+      golden_cases: 5
+      reviewed_by: edgen-w0-review
+  - id: dbms.fd_closure
+    version: 1
+    buckets: 5
+    instances_per_bucket: 60
+    nodes: [dbms.norm.closure, dbms.norm.candidate_keys, dbms.norm.ladder, dbms.norm.second_nf, dbms.norm.third_nf, dbms.norm.bcnf]
+    trust:
+      status: published
+      differential_seeds: 10000
+      property_seeds: 1500
+      golden_cases: 8
+      reviewed_by: edgen-w0-review
+  - id: dbms.serializability
+    version: 1
+    buckets: 5
+    instances_per_bucket: 60
+    nodes: [dbms.txn.conflict_serializable]
+    trust:
+      status: published
+      differential_seeds: 10000
+      property_seeds: 1500
+      golden_cases: 3
+      reviewed_by: edgen-w0-review

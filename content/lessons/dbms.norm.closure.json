@@ -1,0 +1,45 @@
+{
+  "lesson_id": "dbms.norm.closure@v1",
+  "node_id": "dbms.norm.closure",
+  "core_version": 1,
+  "lang": "en",
+  "depth": "standard",
+  "title": "Attribute closure and key derivation",
+  "review_status": "reviewed",
+  "blocks": [
+    {
+      "id": "b1",
+      "type": "claim",
+      "badge": "SOURCED",
+      "text": "The attribute closure of X, written (X)+, is the set of attributes functionally determined by X — computed by repeatedly applying FDs until nothing new is added. A single pass is never sufficient when FDs chain.",
+      "receipt": {"kind": "source_span", "source_id": "edgen_syllabus_notes", "quote": "it is computed by repeatedly applying FDs whose"}
+    },
+    {
+      "id": "b2",
+      "type": "claim",
+      "badge": "SOURCED",
+      "text": "A candidate key K is a minimal attribute set with (K)+ = all attributes. Every superset of a candidate key whose closure is also all attributes is a superkey, not a candidate key.",
+      "receipt": {"kind": "source_span", "source_id": "edgen_syllabus_notes", "quote": "A candidate\nkey K is a minimal attribute set with (K)+ = all attributes:"}
+    },
+    {
+      "id": "b3",
+      "type": "intuition",
+      "badge": "MODEL",
+      "text": "Closure is a *reaching* game: start with what you know (X), pull every FD whose left side you already hold, repeat until the set stops growing. Keys are just the smallest starting hands that reach everything."
+    },
+    {
+      "id": "b4",
+      "type": "example",
+      "badge": "VERIFIED",
+      "text": "F = {A → B, B → C, C → D}: (A)+ = **ABCD** — but only after three rounds of chaining. Ask for (B)+ on the same set and the single-pass habit already costs you D.",
+      "receipt": {"kind": "executed", "detail": "Golden case closure_transitive_chain, verified by dbms.fd_closure."}
+    },
+    {
+      "id": "b5",
+      "type": "check",
+      "badge": "VERIFIED",
+      "foundry": "dbms.fd_closure",
+      "prompt": "Compute a fresh closure (and watch the transitive chains). One implementation checks the other."
+    }
+  ]
+}

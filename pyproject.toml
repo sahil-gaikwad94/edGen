@@ -1,0 +1,8 @@
+[tool.pytest.ini_options]
+testpaths = ["tests", "packages"]
+python_files = ["test_*.py"]
+addopts = "-q"
+markers = [
+    "differential: two-solver differential tests over large seed counts",
+    "slow: tests that take more than a couple of seconds",
+]

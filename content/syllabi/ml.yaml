@@ -1,0 +1,224 @@
+track_id: ml
+version: 1
+title: "Machine Learning Engineering"
+tagline: "From mathematical foundations to reliable deployed models"
+description: "A complete ML-engineering and research-readiness path: scientific Python, mathematics, data quality, classical learning, deep learning, specialization, evaluation, MLOps, interpretability, and a reproducible capstone."
+goal_type: role
+audience: "Aspiring ML engineers, applied researchers, and software engineers moving into modeling"
+estimated_hours: 466
+outcome: "Train, evaluate, explain, deploy, and monitor a model while preventing leakage and reproducing results."
+scope_note: "Coverage is a broad ML engineering foundation. Specialist electives depend on the target domain; hardware, framework APIs, and deployment services evolve independently from core concepts."
+phases:
+  - id: tools_and_mathematics
+    title: "Tools and Mathematical Foundations"
+    summary: "Develop reliable scientific-computing habits and the mathematics behind learning algorithms."
+    modules:
+      - id: python_scientific_computing
+        title: "Python and scientific computing"
+        hours: 28
+        summary: "Use the numerical Python stack efficiently and make experiments reproducible."
+        topics:
+          - "Python functions, classes, iterators, typing, packaging, and environments"
+          - "NumPy arrays, broadcasting, vectorization, indexing, and numerical precision"
+          - "Pandas dataframes, joins, group operations, missing values, and types"
+          - "Visualization for distributions, relationships, and debugging"
+          - "Jupyter workflows, modular code, version control, and dependency locks"
+          - "Random seeds, deterministic runs, floating-point error, and reproducibility"
+        practice: ["Implement a small data analysis pipeline with tested transformations"]
+      - id: mathematics_for_ml
+        title: "Mathematics for machine learning"
+        hours: 44
+        summary: "Build the linear algebra, calculus, probability, statistics, and optimization used in models."
+        topics:
+          - "Vectors, norms, inner products, projections, and geometric interpretation"
+          - "Matrices, rank, linear systems, eigenvalues, SVD, and low-rank structure"
+          - "Derivatives, partial derivatives, chain rule, gradients, and Jacobians"
+          - "Convexity, constrained optimization, and Lagrange multipliers"
+          - "Probability spaces, conditional probability, Bayes rule, and independence"
+          - "Expectation, variance, covariance, common distributions, and sampling"
+          - "Estimation, confidence intervals, hypothesis tests, and statistical power"
+          - "Information theory: entropy, cross-entropy, KL divergence, and mutual information"
+        practice: ["Derive gradients and verify them numerically with finite differences"]
+      - id: data_foundations
+        title: "Data engineering and exploratory analysis"
+        hours: 26
+        summary: "Understand data provenance and quality before fitting a model."
+        topics:
+          - "Problem framing, data contracts, labels, and target definition"
+          - "Collection, joins, deduplication, sampling bias, and source lineage"
+          - "Missingness, outliers, inconsistent units, and data validation"
+          - "Exploratory analysis, distributions, correlations, and subgroup inspection"
+          - "Label quality, annotation noise, class imbalance, and inter-rater agreement"
+          - "Dataset versioning, privacy, access control, and retention"
+        practice: ["Create a data card and a validation suite for a modeling dataset"]
+  - id: classical_learning
+    title: "Classical Machine Learning"
+    summary: "Build strong, interpretable baselines and compare them with statistically sound evaluation."
+    modules:
+      - id: supervised_learning
+        title: "Supervised learning"
+        hours: 42
+        summary: "Understand regression/classification objectives and the behavior of core model families."
+        topics:
+          - "Linear regression, least squares, assumptions, and residual analysis"
+          - "Logistic regression, decision boundaries, and probability calibration"
+          - "Loss functions, maximum likelihood, regularization, and model complexity"
+          - "Decision trees, split criteria, pruning, and interpretability"
+          - "Ensembles: bagging, random forests, boosting, and gradient boosting"
+          - "Support vector machines, margins, kernels, and scaling"
+          - "Nearest neighbors, distance metrics, and curse of dimensionality"
+          - "Bias-variance trade-off, under/overfitting, and learning curves"
+        practice: ["Compare interpretable and ensemble baselines on a fixed validation protocol"]
+      - id: features_validation_metrics
+        title: "Features, validation, and metrics"
+        hours: 34
+        summary: "Prevent leakage and select metrics that reflect the product objective."
+        topics:
+          - "Train/validation/test design, temporal splits, groups, and nested validation"
+          - "Data leakage, target leakage, preprocessing boundaries, and pipeline safety"
+          - "Feature scaling, encoding, transformations, selection, and interactions"
+          - "Classification metrics: precision, recall, F1, ROC-AUC, PR-AUC, and calibration"
+          - "Regression metrics, robust loss, ranking metrics, and business costs"
+          - "Threshold selection, confusion matrices, costs, and operating points"
+          - "Confidence intervals, bootstrap, statistical comparison, and uncertainty"
+          - "Error analysis by slice, subgroup, cohort, and failure severity"
+        practice: ["Audit a deliberately leaky evaluation and rebuild a valid experiment"]
+      - id: unsupervised_learning
+        title: "Unsupervised learning and anomaly detection"
+        hours: 28
+        summary: "Explore structure without labels and assess whether discovered patterns are useful."
+        topics:
+          - "K-means, objective functions, initialization, and choosing cluster count"
+          - "Hierarchical clustering, linkage, dendrograms, and density clustering"
+          - "PCA, explained variance, projections, and dimensionality reduction"
+          - "Mixture models, latent variables, and expectation-maximization intuition"
+          - "Anomaly detection, isolation methods, density scores, and rare-event evaluation"
+          - "Clustering validation, stability, interpretability, and analyst feedback"
+        practice: ["Compare clustering stability and explain when clusters are not actionable"]
+  - id: deep_learning
+    title: "Deep Learning and Optimization"
+    summary: "Understand gradient-based training and the architectural choices behind modern neural models."
+    modules:
+      - id: neural_networks_optimization
+        title: "Neural networks and training dynamics"
+        hours: 42
+        summary: "Implement backpropagation and diagnose optimization behavior."
+        topics:
+          - "Perceptrons, multilayer networks, activations, and tensor shapes"
+          - "Forward passes, computational graphs, backpropagation, and gradient checking"
+          - "Losses for regression, classification, ranking, and class imbalance"
+          - "SGD, momentum, Adam, learning-rate schedules, and batch-size effects"
+          - "Initialization, normalization, dropout, weight decay, and early stopping"
+          - "Vanishing/exploding gradients, gradient clipping, and numerical stability"
+          - "Training loops, batching, checkpointing, and GPU memory basics"
+          - "Learning curves, ablations, and diagnosis of failed training runs"
+        practice: ["Implement a small network from scratch and verify gradients"]
+      - id: neural_architectures
+        title: "Core neural architectures"
+        hours: 38
+        summary: "Relate architectural inductive biases to vision, sequences, and attention."
+        topics:
+          - "Convolution, receptive fields, pooling, and image-classification pipelines"
+          - "Sequence models, recurrence, teacher forcing, and sequence losses"
+          - "Attention, self-attention, positional information, and transformer blocks"
+          - "Embeddings, tokenization concepts, and transfer learning"
+          - "Pretraining, fine-tuning, frozen features, and parameter-efficient adaptation"
+          - "Generative modeling overview and latent representations"
+          - "Compute/data scaling, batch scheduling, and training efficiency"
+        practice: ["Run an architecture ablation and report quality/compute trade-offs"]
+  - id: specializations
+    title: "Applied Specializations"
+    summary: "Choose domain modules and evaluate systems at the right unit of success."
+    modules:
+      - id: computer_vision
+        title: "Computer vision"
+        hours: 22
+        summary: "Build and evaluate image models from data curation to deployment constraints."
+        topics:
+          - "Image representation, augmentation, normalization, and label quality"
+          - "Classification, localization, detection, and segmentation task formulations"
+          - "Transfer learning, fine-tuning, and domain shift"
+          - "IoU, mAP, pixel metrics, calibration, and slice-based error analysis"
+          - "Robustness to lighting, viewpoint, corruption, and distribution change"
+        practice: ["Evaluate a vision model across meaningful subgroups and corruptions"]
+      - id: natural_language_processing
+        title: "Natural language processing"
+        hours: 22
+        summary: "Model text and evaluate language tasks with attention to data and subgroup behavior."
+        topics:
+          - "Text normalization, subword tokenization, and vocabulary coverage"
+          - "Classification, sequence labeling, semantic similarity, and retrieval"
+          - "Embeddings, transformers, fine-tuning, and task adaptation"
+          - "Text generation metrics, human evaluation, and benchmark leakage"
+          - "Bias, language coverage, privacy, and harmful-output assessment"
+        practice: ["Build an NLP evaluation set that includes edge cases and underserved groups"]
+      - id: time_series_recommendation
+        title: "Time series and recommender systems"
+        hours: 24
+        summary: "Handle temporal structure and ranking objectives in two common applied domains."
+        topics:
+          - "Trend, seasonality, stationarity, lag features, and temporal validation"
+          - "Forecasting baselines, error measures, prediction intervals, and backtesting"
+          - "Collaborative/content-based filtering and implicit feedback"
+          - "Ranking, retrieval, candidate generation, and offline/online metrics"
+          - "Cold start, feedback loops, popularity bias, and exposure effects"
+          - "Recommender quality, diversity, privacy, and user controls"
+        practice: ["Build a temporal baseline or recommendation candidate pipeline and audit leakage"]
+  - id: production_ml
+    title: "Production ML and Responsible Practice"
+    summary: "Ship models as maintained systems, not isolated notebooks."
+    modules:
+      - id: mlops_deployment
+        title: "MLOps and model deployment"
+        hours: 32
+        summary: "Create reproducible pipelines and serve models with operational safeguards."
+        topics:
+          - "Data/model versioning, experiment tracking, and artifact lineage"
+          - "Training pipelines, orchestration, feature stores, and reproducibility"
+          - "Batch inference, online serving, streaming, and hardware constraints"
+          - "Model packaging, APIs, autoscaling, latency, throughput, and cost"
+          - "CI for code/data/models, test layers, approvals, and rollback"
+          - "Model registry, staged rollout, shadow/canary, and compatibility"
+          - "Monitoring data quality, drift, performance, and delayed labels"
+          - "Retraining triggers, feedback loops, and safe model retirement"
+        practice: ["Deploy a model with lineage, a rollback path, and observable serving metrics"]
+      - id: interpretability_fairness_privacy
+        title: "Interpretability, fairness, and privacy"
+        hours: 24
+        summary: "Understand who benefits, who is harmed, and what model explanations can support."
+        topics:
+          - "Global/local explanations, feature attribution, and explanation limitations"
+          - "Fairness definitions, subgroup performance, and threshold trade-offs"
+          - "Dataset representativeness, proxy features, and measurement bias"
+          - "Privacy risk, data minimization, access control, and retention"
+          - "Robustness, uncertainty, calibration, and human escalation"
+          - "Documentation: model cards, data sheets, intended use, and limitations"
+        practice: ["Write an impact assessment from slice-level model evidence"]
+      - id: research_methods
+        title: "Research literacy and experimental design"
+        hours: 22
+        summary: "Read empirical claims critically and reproduce results with transparent evidence."
+        topics:
+          - "Paper structure, claims, assumptions, and related-work mapping"
+          - "Baselines, controls, ablations, compute budgets, and reproducibility"
+          - "Statistical significance, multiple comparisons, and negative results"
+          - "Benchmark contamination, dataset licensing, and replication validity"
+          - "Technical writing, experiment logs, and reproducibility checklists"
+        practice: ["Reproduce a small result and document deviations and uncertainty"]
+  - id: capstone
+    title: "ML Engineering Capstone"
+    summary: "Demonstrate an end-to-end, reproducible modeling workflow."
+    modules:
+      - id: ml_capstone
+        title: "End-to-end ML capstone"
+        hours: 38
+        summary: "Deliver a model-backed feature with defensible evaluation and an operational plan."
+        topics:
+          - "Frame a user problem, define a non-ML baseline, and set measurable success criteria"
+          - "Build a provenance-aware dataset and leakage-resistant split"
+          - "Train simple baselines before tuning larger models"
+          - "Use error analysis and ablations to justify model choices"
+          - "Package inference with latency, cost, and failure behavior measured"
+          - "Monitor drift, delayed outcomes, subgroup quality, and retraining risk"
+          - "Publish a model card, experiment report, and reproducibility instructions"
+        practice: ["Present results, explain a failure slice, and defend whether deployment is justified"]

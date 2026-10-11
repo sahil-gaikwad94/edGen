@@ -1,0 +1,10 @@
+{
+  "name": "EdGen",
+  "short_name": "EdGen",
+  "description": "Verified-practice learning: every number computed, every claim has a receipt.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fbfaf7",
+  "theme_color": "#4f46e5",
+  "icons": []
+}
