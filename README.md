@@ -51,7 +51,7 @@ thousands of seeds plus property tests and hand-verified golden cases. See
 
 ```
 src/edgen/{trust,graph,twin,planner,foundry,lesson,api,store}
-content/{graph,lenses,generators,lessons}   # versioned content artifacts
+src/edgen/content/                          # versioned content artifacts
 tests/                                      # maths proofs + trust properties
 migrations/                                 # Postgres schema
 ```
